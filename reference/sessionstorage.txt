@@ -1,0 +1,2 @@
+//session storage
+// maybe use local stoarge or cookies to store current user

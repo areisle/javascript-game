@@ -1,0 +1,37 @@
+mysql 
+-- my commands for creating a datatbase
+
+CREATE DATABASE userscores;
+SHOW DATABASES;
+USE userscores;
+//these command not finished
+CREATE TABLE scores
+(
+name VARCHAR(255),
+ score INT,
+ time TIME,
+ PRIMARY KEY (name)
+);
+//INSERT INTO scores (name, score, time) VALUES (myname, myscore, mytime);
+
+
+
+// commands I think I'll need
+// INSERT INTO
+// UPDATE, SET (make sure to use where or it will update every entry in the table)
+// SELECT
+
+--on entry user selects new or returning
+--enters username --example -- bob
+--for new user
+INSERT INTO scores (name) VALUES bob;
+// and set to current user (use local storage for this)
+--for returning
+IF EXISTS ( SELECT 1 FROM scores WHERE name=bob) 
+BEGIN
+	// and set to current user (use local storage for this)
+END
+ELSE
+	// tell them they entered the wrong username
+	// maybe give a list of close usernames?
+END
