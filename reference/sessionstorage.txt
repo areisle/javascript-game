@@ -14,3 +14,5 @@ sessionStorage.removeItem('key');
 
 // Remove all saved data from sessionStorage
 sessionStorage.clear();
+
+//will use session storage to store data about the states of different ingredients, whats being added, etc.
