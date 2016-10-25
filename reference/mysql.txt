@@ -1,6 +1,8 @@
 mysql 
 -- my commands for creating a datatbase
-
+---where database name: userscores, table name: scores, 
+		name: their name, time: their best time, score: their highest score
+		current user name: bob;
 CREATE DATABASE userscores;
 SHOW DATABASES;
 USE userscores;
@@ -24,14 +26,27 @@ name VARCHAR(255),
 --on entry user selects new or returning
 --enters username --example -- bob
 --for new user
-INSERT INTO scores (name) VALUES bob;
+INSERT INTO scores (name) VALUES ('bob');
 // and set to current user (use local storage for this)
---for returning
+--for returning (mysql) --sqlite uses CASE WHEN THEN syntax
 IF EXISTS ( SELECT 1 FROM scores WHERE name=bob) 
 BEGIN
 	// and set to current user (use local storage for this)
+	
 END
 ELSE
 	// tell them they entered the wrong username
 	// maybe give a list of close usernames?
 END
+
+//get top 3 highscores
+SELECT * FROM scores ORDER BY score, time LIMIT 3;
+
+//check if new score is better
+//select old score
+SELECT score FROM scores WHERE name='bob';
+---compare this to new score
+
+//update users score
+UPDATE scores
+SET score='new score', time='new time' WHERE name='bob';
