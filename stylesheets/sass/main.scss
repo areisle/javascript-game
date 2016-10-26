@@ -1,0 +1,49 @@
+@import "functions.scss";
+$items-width: 20;
+html, body, .wrapper {
+	width: 100%;
+	height: 100%;
+}
+.wrapper {
+	display: flex;
+	-webkit-perspective:1200;
+}
+.view {
+	padding: 0;
+	display: inline-block;
+	width: 80vw;
+	height: 100vh;
+}
+.items {
+	display: flex;
+	flex-direction: column;
+	width: 20vw;
+	height: 100vh;
+	@include testing;
+	.item {
+		@include testing;
+		height: 20vw;
+	}
+}
+.cutting-board {
+	display: flex;
+	flex-wrap: wrap;
+	width: (100 - $items-width) + vw;
+	height: (100 - $items-width) + vw;
+	transform-origin: center bottom;
+	transform: rotateX(45deg);
+}
+.cutting-board div {
+	width: 50%;
+	height: 50%;
+	@include testing;
+}
+.drop-hover {
+	background-color: rgba(34,0,78, 0.4);
+}
+@media screen and (min-aspect-ratio: 100/80) {
+	.cutting-board {
+		width: 100vh;
+		height: 100vh;
+	}
+}

@@ -1,0 +1,11 @@
+$testing: true;
+@mixin testing{
+	@if $testing {
+		border: 3px solid black;
+		&:hover {
+		background-color: rgba(34,0,78, 0.4);
+		}
+	} @else {
+		border:none;
+	}
+}
