@@ -1,0 +1,25 @@
+.view > * {
+  position: absolute;
+  display: block;
+  width: 10vh;
+  height: 10vh;
+  border: 3px solid black; }
+  .view > *:hover {
+    background-color: rgba(34, 0, 78, 0.4); }
+
+.onions {
+  top: 10vh;
+  left: 20vh; }
+
+.garlic {
+  top: 40vh; }
+
+.wine {
+  left: 50vh;
+  top: 60vh; }
+
+.mushrooms {
+  left: 70vh;
+  top: 80vh; }
+
+/*# sourceMappingURL=cellar.css.map */

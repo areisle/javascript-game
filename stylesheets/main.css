@@ -4,11 +4,11 @@ html, body, .wrapper {
 
 .wrapper {
   display: flex;
-  -webkit-perspective: 1200; }
+  -webkit-perspective: 1200;
+  perspective: 1200; }
 
 .view {
   padding: 0;
-  display: inline-block;
   width: 80vw;
   height: 100vh; }
 
@@ -25,28 +25,5 @@ html, body, .wrapper {
     height: 20vw; }
     .items .item:hover {
       background-color: rgba(34, 0, 78, 0.4); }
-
-.cutting-board {
-  display: flex;
-  flex-wrap: wrap;
-  width: 80vw;
-  height: 80vw;
-  transform-origin: center bottom;
-  transform: rotateX(45deg); }
-
-.cutting-board div {
-  width: 50%;
-  height: 50%;
-  border: 3px solid black; }
-  .cutting-board div:hover {
-    background-color: rgba(34, 0, 78, 0.4); }
-
-.drop-hover {
-  background-color: rgba(34, 0, 78, 0.4); }
-
-@media screen and (min-aspect-ratio: 100 / 80) {
-  .cutting-board {
-    width: 100vh;
-    height: 100vh; } }
 
 /*# sourceMappingURL=main.css.map */

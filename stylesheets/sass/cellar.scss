@@ -1,0 +1,23 @@
+@import "functions.scss";
+.view > * {
+	position: absolute;
+	display: block;
+	width: 10vh;
+	height: 10vh;
+	@include testing;
+}
+.onions {
+	top: 10vh;
+	left: 20vh;
+}
+.garlic {
+	top: 40vh;
+}
+.wine {
+	left: 50vh;
+	top: 60vh;
+}
+.mushrooms {
+	left: 70vh;
+	top: 80vh;
+}

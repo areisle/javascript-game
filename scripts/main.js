@@ -1,37 +1,70 @@
-//length of cutting animation if added (in ms), also delay on item revert
-var cuttingTime = 1000;
-$( init );
-var temp = document.getElementById('cutting-board').getBoundingClientRect();
-function init() {
-  $('.item').draggable({
-  	containment: 'window',
-  	revert: function () {
-        $(this).delay(cuttingTime);
-        return true
-    }
-  });
-  $('.cut').droppable({
-  	accept: '.item',
-  	drop: handleDropEvent,
-  	hoverClass: 'drop-hover'
-  	tolerance: 'pointer'
-  });
-}
-function handleDropEvent(event, ui) {
-  ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
-  //setTransformOrigin($(this).parent()[0], ui.draggable[0]);
-  //ui.draggable.css("transform",'rotateX(45deg)');
-  //$(this).parent().
-  ui.draggable.html("dropped");
+// list of items
+var items_collected = 0;
+
+$items = $('.items');
+//add ingredients to bag when clicked on
+$('.view').on('click', '.ingredient', function (){
+	//append clicked ingredient to items list (opt: if list contains less than 12 items)
+	console.log("ingredient " + $(this).attr("id") + " was clicked");
+	appendItem(this);
+});
+
+//remove an ingredient from bag
+$('.items').on('click', '.item .trash',  function (){
+	removeItem(this);
+});
+
+function appendItem(item) {
+	//append the item --done
+	//add ingredient to ingredients_collected
+	if (items_collected < 10) {
+		// <div class="item ingredient"> ingredient <button class="trash">remove</button></div>
+		var $current_item = $('<div class="item ' + $(item).attr('id') + '"><button class="trash">remove</button>' + $(item).attr('id') + '</div>');
+		$items.append($current_item);
+		$current_item.data(new ingredient($(item).attr('id'), 'raw', 'unknown', 'unknown'));
+		$current_item.draggable();
+		//add ingredient data
+		// $items.find('.item:last-child').data(new ingredient($(item).attr('id'), 'raw', 'unknown', 'unknown'));
+		// $items.find('.item:last-child').draggable({
+		// 					  	containment: 'window',
+		// 					  	revert: function () {
+		// 					        $(this).delay(1000);
+		// 					        return true;
+		// 					    }
+		// 					  });
+		//make item draggable but set to false unless in cutting-board view
+
+		//increment
+		items_collected++;
+	} else {
+		//temporary alert -- beautify later
+		alert("sorry your bag is full");
+	}
+	//for debugging
+	console.log($items.find('.item:last-child').data());
 }
 
-function setTransformOrigin(elem_ref, elem_to_set) {
-	//assuming transform origin is center bottom -- will make this more general later
-	//gets elem_to_set's height and width, and position, and use them to set transform origin wrt ref
-	//left= 
-	var ref = elem_ref.getBoundingClientRect();
-	var set = elem_to_set.getBoundingClientRect();
-	var y = (ref.bottom - set.top) / set.height * 100;
-	var x = ((ref.left + ref.width /2) - set.left) / set.width * 100;
-	$(elem_to_set).css('transform-origin', x + '% ' + y + '%');
+function removeItem(item) {
+	//remove the item --done
+	//remove ingredient to ingredients_collected
+	console.log("trashing ingredient");
+	$(item).parent('.item').remove();
+	//increment
+	items_collected--;
 }
+
+function ingredient(name, state, type, stage) {
+	//ex. name = "onion"
+	this.name = name;
+	//ex. type = "cut"
+	// may use for other thing eventually
+	this.type = type;
+	// the stage in cooking when this ingredient should be added (likely expressed as a time)
+	this.stage = stage;
+	// state of the ingredient
+	// 0 if raw
+	// 1-4 for the different cuts
+	// have 1 be largest and 4 smallest
+	this.state = state;
+}
+
