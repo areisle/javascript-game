@@ -2,8 +2,9 @@
 var items_collected = 0;
 
 $items = $('.items');
+$items.sortable({connectWith: ".cut"});
 //add ingredients to bag when clicked on
-$('.view').on('click', '.ingredient', function (){
+$('.wrapper').on('click', '.ingredient', function (){
 	//append clicked ingredient to items list (opt: if list contains less than 12 items)
 	console.log("ingredient " + $(this).attr("id") + " was clicked");
 	appendItem(this);
@@ -23,19 +24,15 @@ function appendItem(item) {
 		$items.append($current_item);
         //add ingredient data
 		$current_item.data(new ingredient($(item).attr('id'), 'raw', 'unknown', 'unknown'));
-		$current_item.draggable({
-            containment: 'window',
-            revert:true
-        });
-		//make item draggable but set to false unless in cutting-board view
 		//increment
 		items_collected++;
+		console.log($items.find('.item:last-child').data());
 	} else {
 		//temporary alert -- beautify later
 		alert("sorry your bag is full");
 	}
 	//for debugging
-	console.log($items.find('.item:last-child').data());
+	
 }
 
 function removeItem(item) {
@@ -62,3 +59,44 @@ function ingredient(name, state, type, stage) {
 	this.state = state;
 }
 
+
+/* -----------------------
+
+  navigation-- view swapping -
+
+  -------------------------*/
+
+//swap view div depending on href of clicked link
+//1. get href/ prevent default
+//2. get view div and use replaceWith?
+$('.wrapper').on('click', '.nav', function (e){
+	e.preventDefault();
+	var href = $(this).attr('href');
+	navigate(href);
+	console.log(href + " nav link was clicked");
+});
+
+function navigate(href) {
+	//get view element
+	//try doing this by having the id match the href?
+	var $view = $('#view-wrapper');
+	var view_name = href.substring(1);
+	$view.load('views.html ' + href + '-view');
+	//handle adding droppable if view=cutting-board
+	if (view_name === 'cutting-board') {
+		$('.cut').droppable({
+		  	accept: '.item',
+		  	drop: handleDropEvent,
+		  	hoverClass: 'drop-hover',
+		  	tolerance: 'pointer'
+		  });
+		function handleDropEvent(event, ui) {
+		  ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+		  //setTransformOrigin($(this).parent()[0], ui.draggable[0]);
+		  //ui.draggable.css("transform",'rotateX(45deg)');
+		  //$(this).parent().
+		  ui.draggable.html("dropped");
+		}
+	}
+	console.log('href: '+href+', $view: '+$view+', view_name: '+view_name);
+}

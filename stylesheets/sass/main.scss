@@ -1,4 +1,9 @@
 @import "functions.scss";
+@import "kitchen.scss";
+@import "cellar.scss";
+@import "stove.scss";
+@import "shelf.scss";
+@import "cutting-board.scss";
 $items-width: 20;
 html, body, .wrapper {
 	width: 100%;

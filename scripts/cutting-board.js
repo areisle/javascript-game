@@ -1,7 +1,6 @@
 //length of cutting animation if added (in ms), also delay on item revert
 var cuttingTime = 1000;
 $( init );
-var temp = document.getElementById('cutting-board').getBoundingClientRect();
 function init() {
   $('.item').draggable({
   	containment: 'window',
