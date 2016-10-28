@@ -7,22 +7,18 @@
   .view > a:hover {
     background-color: rgba(34, 0, 78, 0.4); }
 
-.ice-box {
+#kitchen-view .ice-box {
   top: 10vh;
   left: 20vh; }
-
-.stove {
+#kitchen-view .stove {
   top: 40vh; }
-
-.cellar {
+#kitchen-view .cellar {
   left: 50vh;
   top: 60vh; }
-
-.shelf {
+#kitchen-view .shelf {
   left: 70vh;
   top: 80vh; }
-
-.rice {
+#kitchen-view .rice {
   left: 45vh;
   top: 45vh; }
 

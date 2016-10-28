@@ -6,22 +6,24 @@
 	height: 10vh;
 	@include testing;
 }
-.ice-box {
-	top: 10vh;
-	left: 20vh;
-}
-.stove {
-	top: 40vh;
-}
-.cellar {
-	left: 50vh;
-	top: 60vh;
-}
-.shelf {
-	left: 70vh;
-	top: 80vh;
-}
-.rice {
-	left: 45vh;
-	top: 45vh;
+#kitchen-view {
+	.ice-box {
+		top: 10vh;
+		left: 20vh;
+	}
+	.stove {
+		top: 40vh;
+	}
+	.cellar {
+		left: 50vh;
+		top: 60vh;
+	}
+	.shelf {
+		left: 70vh;
+		top: 80vh;
+	}
+	.rice {
+		left: 45vh;
+		top: 45vh;
+	}
 }
