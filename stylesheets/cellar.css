@@ -7,18 +7,18 @@
   .view > *:hover {
     background-color: rgba(34, 0, 78, 0.4); }
 
-.onions {
+#onions {
   top: 10vh;
   left: 20vh; }
 
-.garlic {
+#garlic {
   top: 40vh; }
 
-.wine {
+#wine {
   left: 50vh;
   top: 60vh; }
 
-.mushrooms {
+#mushrooms {
   left: 70vh;
   top: 80vh; }
 

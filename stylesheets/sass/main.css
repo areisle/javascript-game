@@ -1,0 +1,36 @@
+/* line 3, /home/tyler/twd/projects/javascript-game/stylesheets/sass/main.scss */
+html, body, .wrapper {
+  width: 100%;
+  height: 100%; }
+
+/* line 7, /home/tyler/twd/projects/javascript-game/stylesheets/sass/main.scss */
+.wrapper {
+  display: flex;
+  -webkit-perspective: 1200;
+  perspective: 1200; }
+
+/* line 12, /home/tyler/twd/projects/javascript-game/stylesheets/sass/main.scss */
+.view {
+  padding: 0;
+  width: 80vw;
+  height: 100vh; }
+
+/* line 19, /home/tyler/twd/projects/javascript-game/stylesheets/sass/main.scss */
+.items {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+  height: 100vh;
+  border: 3px solid black; }
+  /* line 5, /home/tyler/twd/projects/javascript-game/stylesheets/sass/functions.scss */
+  .items:hover {
+    background-color: rgba(34, 0, 78, 0.4); }
+  /* line 25, /home/tyler/twd/projects/javascript-game/stylesheets/sass/main.scss */
+  .items .item {
+    border: 3px solid black;
+    height: 20vw; }
+    /* line 5, /home/tyler/twd/projects/javascript-game/stylesheets/sass/functions.scss */
+    .items .item:hover {
+      background-color: rgba(34, 0, 78, 0.4); }
+
+/*# sourceMappingURL=main.css.map */

@@ -21,19 +21,13 @@ function appendItem(item) {
 		// <div class="item ingredient"> ingredient <button class="trash">remove</button></div>
 		var $current_item = $('<div class="item ' + $(item).attr('id') + '"><button class="trash">remove</button>' + $(item).attr('id') + '</div>');
 		$items.append($current_item);
+        //add ingredient data
 		$current_item.data(new ingredient($(item).attr('id'), 'raw', 'unknown', 'unknown'));
-		$current_item.draggable();
-		//add ingredient data
-		// $items.find('.item:last-child').data(new ingredient($(item).attr('id'), 'raw', 'unknown', 'unknown'));
-		// $items.find('.item:last-child').draggable({
-		// 					  	containment: 'window',
-		// 					  	revert: function () {
-		// 					        $(this).delay(1000);
-		// 					        return true;
-		// 					    }
-		// 					  });
+		$current_item.draggable({
+            containment: 'window',
+            revert:true
+        });
 		//make item draggable but set to false unless in cutting-board view
-
 		//increment
 		items_collected++;
 	} else {

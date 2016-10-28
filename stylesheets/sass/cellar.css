@@ -1,0 +1,31 @@
+/* line 2, /home/tyler/twd/projects/javascript-game/stylesheets/sass/cellar.scss */
+.view > * {
+  position: absolute;
+  display: block;
+  width: 10vh;
+  height: 10vh;
+  border: 3px solid black; }
+  /* line 5, /home/tyler/twd/projects/javascript-game/stylesheets/sass/functions.scss */
+  .view > *:hover {
+    background-color: rgba(34, 0, 78, 0.4); }
+
+/* line 9, /home/tyler/twd/projects/javascript-game/stylesheets/sass/cellar.scss */
+#onions {
+  top: 10vh;
+  left: 20vh; }
+
+/* line 13, /home/tyler/twd/projects/javascript-game/stylesheets/sass/cellar.scss */
+#garlic {
+  top: 40vh; }
+
+/* line 16, /home/tyler/twd/projects/javascript-game/stylesheets/sass/cellar.scss */
+#wine {
+  left: 50vh;
+  top: 60vh; }
+
+/* line 20, /home/tyler/twd/projects/javascript-game/stylesheets/sass/cellar.scss */
+#mushrooms {
+  left: 70vh;
+  top: 80vh; }
+
+/*# sourceMappingURL=cellar.css.map */
