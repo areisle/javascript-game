@@ -81,22 +81,27 @@ function navigate(href) {
 	//try doing this by having the id match the href?
 	var $view = $('#view-wrapper');
 	var view_name = href.substring(1);
-	$view.load('views.html ' + href + '-view');
+	$view.load('views.html ' + href + '-view', function() {makeDroppable(view_name)});
 	//handle adding droppable if view=cutting-board
-	if (view_name === 'cutting-board') {
-		$('.cut').droppable({
-		  	accept: '.item',
-		  	drop: handleDropEvent,
-		  	hoverClass: 'drop-hover',
-		  	tolerance: 'pointer'
-		  });
-		function handleDropEvent(event, ui) {
-		  ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
-		  //setTransformOrigin($(this).parent()[0], ui.draggable[0]);
-		  //ui.draggable.css("transform",'rotateX(45deg)');
-		  //$(this).parent().
-		  ui.draggable.html("dropped");
-		}
-	}
+	
 	console.log('href: '+href+', $view: '+$view+', view_name: '+view_name);
+}
+function makeDroppable(view_name) {
+    console.log("function droppable called");
+    if (view_name === 'cutting-board') {
+        console.log("cut: "+ $(".cut"));
+        $('.cut').droppable({
+            accept: '.item',
+            drop: handleDropEvent,
+            hoverClass: 'drop-hover',
+            tolerance: 'pointer'
+          });
+        function handleDropEvent(event, ui) {
+          ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+          //setTransformOrigin($(this).parent()[0], ui.draggable[0]);
+          //ui.draggable.css("transform",'rotateX(45deg)');
+          //$(this).parent().
+          ui.draggable.html("dropped");
+        }
+    }
 }
