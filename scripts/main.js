@@ -117,11 +117,11 @@ $(document).ready(function () {
     function makePopUp (innards, buttons) {
         $body.append('<div class="pop-up"></div>');
         $body.append('<div class="pop-up-overlay"></div>');
-        for (var innard in innards) {
-            $(".pop-up").append('<p>' + innards[innard] + '</p>');
+        for (var innard in innards){
+            $(".pop-up").append('<p>' + innards[innard]+'</p>');
         }
         for (var button in buttons) {
-            $(".pop-up").append('<button class="' + buttons[button] + '">' + buttons[button] + '</button>');
+            $(".pop-up").append('<button class="'+ buttons[button]+'">' + buttons[button] + '</button>');
         }
     }
     function removePopUp (){
@@ -157,69 +157,66 @@ $(document).ready(function () {
         navigate(href);
         console.log(href + " nav link was clicked");
     });
-
+    function potView() {
+        // first check they have at least one of every ingredient
+        //temporary so I can skip collecting ingredients
+        if (true || collectionCheck()){
+            //had all ingredients
+            //make pop up ask if they're sure
+            //try to turn off other navigation while pop-p is up (maybe overlay div that fade in and reset its pointer-events to true or whatever)
+            makePopUp(['cooking is very time sensitive, are you sure you\'re ready to proceed?'],['yes','no']);
+            $body.on('click', '.pop-up button.yes', function() {
+                removePopUp();
+                //switch view
+                $('#view-wrapper').load('views.html #pot-view', function() {makeDroppable('pot')});
+                //add next pop-up
+                makePopUp(['drag and drop ingredients to add them to the pot','timing and order matter!', 'add first ingredient to start timer'],['ok']);
+                $body.on('click', '.pop-up button.ok', function() {
+                    removePopUp();
+                    //add next pop-up ---first of the cooking stages
+                    makePopUp([cookingStages.shift()],['start']);
+                    $body.on('click', '.pop-up button.start', function(e) {
+                        removePopUp();
+                        //remove animation class
+                        
+                        //trigger reflow
+                        //add class back
+                       //set up timer
+                        $('.pie-timer circle').css({'animation-play-state':'running'});
+                        //trigger next pop-up on timer end
+                        $body.on(animationEvent, '.pie-timer circle', function(){
+                            //reset animation
+                            var $pie = $('#view-wrapper').find('.pie-timer circle');
+                            $pie.css('animation-play-state','paused');
+                            $pie.css('animation', 'flash-and-fill-copy 5s linear');
+                            console.log('animation ended');
+                            makePopUp([cookingStages.shift()],['start']);
+                            $body.on('click', '.pop-up button.start', function() {
+                                $('#view-wrapper').find('.pie-timer circle').css('animation-play-state','running');
+                            });
+                        }); 
+                    });
+                });
+            });
+        } else {
+            //have pop up saying they still need more ingredients
+            makePopUp(['sorry, you still need more ingredients before you begin cooking'],['ok']);
+            $body.on('click', '.pop-up button.ok', function() {
+                removePopUp();
+                //do nothing
+            });
+        }
+        
+    }
     function navigate(href) {
         "use strict";
         var $view = $('#view-wrapper');
         var view_name = href.substring(1);
         if (view_name === "pot") {
-            // first check they have at least one of every ingredient
-            //temporary so I can skip collecting ingredients
-            if (true || collectionCheck()){
-                //had all ingredients
-                //make pop up ask if they're sure
-                //try to turn off other navigation while pop-p is up (maybe overlay div that fade in and reset its pointer-events to true or whatever)
-                makePopUp(['cooking is very time sensitive, are you sure you\'re ready to proceed?'],['yes','no'])
-                //if yes, load view, add second explanatory pop-up and remove first one
-                $body.on('click', '.pop-up button.yes', function() {
-                    console.log("clicked yes");
-                    $view.load('views.html ' + href + '-view', function() {makeDroppable(view_name)});
-                    $body.on(animationEvent, '.pie-timer circle', function(){
-                        makePopUp([cookingStages.shift()],['start']);
-                        //reset animation
-                        var $pie = $('.pie-timer circle')
-                        //trigger reflow
-                        $pie.removeClass('run-timer');
-                        $pie.width() = $pie.width();
-                        $pie.removeClass('run-timer');
-                        console.log('animation ended');
-                    });
-                    $('.pop-up').remove();
-                    $('.pop-up-overlay').remove();
-                    makePopUp(['drag and drop ingredients to add them to the pot','timing and order matter!', 'add first ingredient to start timer'],['ok']);
-                    $body.on('click', '.pop-up button.ok', function() {
-                        //start timer and remove popup
-                        removePopUp();
-                        makePopUp([cookingStages.shift()],['start']); 
-                        $body.on('click', '.pop-up button.start', function() {
-                            //start timer and remove popup
-                            removePopUp();
-                            console.log('pop-up-start');
-                            $('.pie-timer circle').css({'animation-play-state':'running'});
-                        });
-                    });
-                });
-                // if no, remove pop-up and do nothing
-                $body.on('click', '.pop-up button.no', function() {
-                    console.log("clicked no");
-                    removePopUp();
-                });
-                return;
-            } else {
-                //have pop up saying they still need more ingredients
-                makePopUp(['sorry, you still need more ingredients before you begin cooking'],['ok']);
-                $body.on('click', '.pop-up button.ok', function() {
-                    console.log("clicked no");
-                    $('.pop-up').remove();
-                    $('.pop-up-overlay').remove();
-                });
-                return;
-            }
-            //then if they do, pop up asking if they wish to proceed
-
+            potView();
+        } else {
+            $view.load('views.html ' + href + '-view', function() {makeDroppable(view_name)});
         }
-        $view.load('views.html ' + href + '-view', function() {makeDroppable(view_name)});
-
     }
 
     /* -----------------------
