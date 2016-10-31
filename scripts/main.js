@@ -198,7 +198,7 @@ $(document).ready(function () {
     function popUpLoop () {
         //base case
         console.log("pop-up-loop called");
-        if (cookingStages.length === 1) {
+        if (cookingStages.length === 0) {
             console.log("ended");
             //end of game stuff
             return;
@@ -213,13 +213,13 @@ $(document).ready(function () {
             console.log(cookingStages[0]);
             makePopUp([cookingStages.shift()],['start']);
 
-            $body.on('click', '.pop-up button.start', function(e) {
+            $body.one('click', '.pop-up button.start', function(e) {
                 removePopUp();
                //set up timer
                 var $pie = $('.pie-timer circle');
                 $pie.css({'animation-play-state':'running'});
                 //trigger next pop-up on timer end
-                $body.on(animationEvent, '.pie-timer circle', function(){
+                $body.one(animationEvent, '.pie-timer circle', function(){
                     //reset animation -- trigger reflow by changing animation name
                     $pie.css('animation-play-state','paused');
                     if (copy===1) {
