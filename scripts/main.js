@@ -197,6 +197,7 @@ $(document).ready(function () {
     }
     function popUpLoop () {
         //base case
+        console.log("pop-up-loop called");
         if (cookingStages.length === 1) {
             console.log("ended");
             //end of game stuff
