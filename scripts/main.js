@@ -11,7 +11,7 @@ $(document).ready(function () {
                              "parmesan": 0,
                              "butter": 0,
                              "stock": 0},
-        cookingStages = ['soffrito', 'tostatura', 'deglaze', 'cottura', 'mantecatura'],
+        cookingStages = ['soffrito', 'tostatura', 'apples', 'deglaze', 'cottura', 'mantecatura'],
         startTime = "new",
         animationEvent = whichAnimationEvent(),
         $body = $('body'),
@@ -181,28 +181,8 @@ $(document).ready(function () {
                 $body.on('click', '.pop-up button.ok', function() {
                     removePopUp();
                     //add next pop-up ---first of the cooking stages
-                    makePopUp([cookingStages.shift()],['start']);
-                    $body.on('click', '.pop-up button.start', function(e) {
-                        removePopUp();
-                        //remove animation class
-                        
-                        //trigger reflow
-                        //add class back
-                       //set up timer
-                        $('.pie-timer circle').css({'animation-play-state':'running'});
-                        //trigger next pop-up on timer end
-                        $body.on(animationEvent, '.pie-timer circle', function(){
-                            //reset animation
-                            var $pie = $('#view-wrapper').find('.pie-timer circle');
-                            $pie.css('animation', 'flash-and-fill-copy 5s linear');
-                            $pie.css('animation-play-state','paused');
-                            console.log('animation ended');
-                            makePopUp([cookingStages.shift()],['start']);
-                            $body.on('click', '.pop-up button.start', function() {
-                                $('#view-wrapper').find('.pie-timer circle').css('animation-play-state','running');
-                            });
-                        }); 
-                    });
+                    //pop-up soffrito
+                    popUpLoop();
                 });
             });
         } else {
@@ -214,6 +194,44 @@ $(document).ready(function () {
             });
         }
         
+    }
+    function popUpLoop () {
+        //base case
+        if (cookingStages.length === 1) {
+            console.log("ended");
+            //end of game stuff
+            return;
+        } else {
+            var copy;
+            //toggle for animation to make it restart
+            if (((cookingStages.length-1) % 2) === 0) {
+                copy = 0;
+            } else {
+                copy = 1;
+            }
+            console.log(cookingStages[0]);
+            makePopUp([cookingStages.shift()],['start']);
+
+            $body.on('click', '.pop-up button.start', function(e) {
+                removePopUp();
+               //set up timer
+                var $pie = $('.pie-timer circle');
+                $pie.css({'animation-play-state':'running'});
+                //trigger next pop-up on timer end
+                $body.on(animationEvent, '.pie-timer circle', function(){
+                    //reset animation -- trigger reflow by changing animation name
+                    $pie.css('animation-play-state','paused');
+                    if (copy===1) {
+                       $pie.css('animation', 'flash-and-fill-copy 3s linear'); 
+                   } else {
+                        $pie.css('animation', 'flash-and-fill 3s linear');
+                   }
+                    $pie.css('animation-play-state','paused');
+                    console.log("animation end");
+                    popUpLoop();
+                }); 
+            });
+        }
     }
     function navigate(href) {
         "use strict";
