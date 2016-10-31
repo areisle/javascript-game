@@ -11,7 +11,7 @@ $(document).ready(function () {
                              "parmesan": 0,
                              "butter": 0,
                              "stock": 0},
-        cookingStages = ['soffrito', 'tosturato', 'deglaze'],
+        cookingStages = ['soffrito', 'tostatura', 'deglaze', 'cottura', 'mantecatura'],
         startTime = "new",
         animationEvent = whichAnimationEvent(),
         $body = $('body'),
@@ -132,7 +132,7 @@ $(document).ready(function () {
         $('.pop-up').remove();
         $('.pop-up-overlay').remove(); 
     }
-    
+
     $items.sortable();
     //add ingredients to bag when clicked on
     $('.wrapper').on('click', '.ingredient', function () {
@@ -165,6 +165,8 @@ $(document).ready(function () {
     function potView() {
         // first check they have at least one of every ingredient
         //temporary so I can skip collecting ingredients
+        var next_animation = 'flash-and-fill-copy 5s linear',
+            on_copy = false;
         if (true || collectionCheck()){
             //had all ingredients
             //make pop up ask if they're sure
@@ -192,8 +194,8 @@ $(document).ready(function () {
                         $body.on(animationEvent, '.pie-timer circle', function(){
                             //reset animation
                             var $pie = $('#view-wrapper').find('.pie-timer circle');
-                            $pie.css('animation-play-state','paused');
                             $pie.css('animation', 'flash-and-fill-copy 5s linear');
+                            $pie.css('animation-play-state','paused');
                             console.log('animation ended');
                             makePopUp([cookingStages.shift()],['start']);
                             $body.on('click', '.pop-up button.start', function() {
