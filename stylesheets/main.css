@@ -58,6 +58,10 @@
   top: 10vh;
   left: 50vh; }
 
+.pot {
+  left: 40vh;
+  top: 20vh; }
+
 .book {
   top: 50vh;
   left: 10vh; }
@@ -81,6 +85,67 @@
   #cutting-board-view .cutting-board {
     width: 100vh;
     height: 100vh; } }
+
+@keyframes flash-and-fill {
+  0% {
+    opacity: 1;
+    stroke: green;
+    stroke-dashoffset: 100; }
+  34% {
+    opacity: 1; }
+  42% {
+    opacity: 0.5; }
+  50% {
+    opacity: 1; }
+  54% {
+    opacity: 1; }
+  62% {
+    opacity: 0.5; }
+  70% {
+    opacity: 1;
+    stroke: yellow; }
+  74% {
+    opacity: 1; }
+  77% {
+    opacity: 0.5; }
+  80% {
+    opacity: 1; }
+  84% {
+    opacity: 1; }
+  87% {
+    opacity: 0.5; }
+  90% {
+    opacity: 1;
+    stroke: orange; }
+  92% {
+    opacity: 1; }
+  94% {
+    opacity: 0.5; }
+  96% {
+    opacity: 1; }
+  98% {
+    opacity: 0.5; }
+  100% {
+    opacity: 1;
+    stroke: red;
+    stroke-dashoffset: 0; } }
+#pot-view .pot.cooking {
+  top: 50vh;
+  left: 50vh; }
+#pot-view svg.pie-timer {
+  width: 200px;
+  height: 200px;
+  transform: rotate(-90deg);
+  fill: transparent;
+  border-radius: 50%; }
+  #pot-view svg.pie-timer circle {
+    stroke: red;
+    stroke-width: 100%;
+    stroke-dasharray: 100 100; }
+#pot-view .run-timer {
+  animation: flash-and-fill 3s linear;
+  animation-iteration-count: 1;
+  animation-play-state: paused; }
 
 html, body, .wrapper {
   width: 100%;
@@ -109,5 +174,26 @@ html, body, .wrapper {
     height: 20vw; }
     .items .item:hover {
       background-color: rgba(34, 0, 78, 0.4); }
+
+.pop-up {
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  width: 50%;
+  height: 50%;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 3px solid black;
+  z-index: 200; }
+  .pop-up:hover {
+    background-color: rgba(34, 0, 78, 0.4); }
+
+.pop-up-overlay {
+  position: fixed;
+  background-color: rgba(64, 64, 64, 0.2);
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  z-index: 100; }
 
 /*# sourceMappingURL=main.css.map */

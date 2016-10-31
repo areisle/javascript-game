@@ -8,7 +8,7 @@
 	<?php
 		//retrieves the query?
 		 $q = intval($_GET['q']);
-		 //make connection to database -- assuming mysql dms
+		 //make connection to database -- assuming mysql dms --switched to sqlite
 		 //localhost or "127.0.0.1"-- since database is on same server as php file
 		 $link = mysqli_connect('127.0.0.1','my_user', 'my_password','my_database');
 		 //not sure where this will output yet
