@@ -1,17 +1,15 @@
-.stock {
+#stove-view .stock {
   top: 50vh;
   left: 50vh; }
-
-.butter {
-  top: 50vh;
-  left: 50vh; }
-
-.parmesan {
-  top: 10vh;
-  left: 50vh; }
-
-.pot {
+#stove-view .pot {
   left: 40vh;
   top: 20vh; }
+
+#ice-box-view .butter {
+  top: 50vh;
+  left: 50vh; }
+#ice-box-view .parmesan {
+  top: 10vh;
+  left: 50vh; }
 
 /*# sourceMappingURL=stove.css.map */

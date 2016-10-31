@@ -32,6 +32,7 @@ $(document).ready(function () {
         // have 1 be largest and 4 smallest
         this.state = state;
     }
+
     function appendItem(item) {
         //append the item --done
         //add ingredient to ingredients_collected
@@ -94,8 +95,8 @@ $(document).ready(function () {
             alert("sorry your bag is full");
         }
         //for debugging
-
     }
+
     function removeItem(item) {
         //remove the item --done
         //remove ingredient to ingredients_collected
@@ -106,6 +107,7 @@ $(document).ready(function () {
         //increment
         items_collected--;
     }
+
     function collectionCheck() {
         for (var item in collection_counts ) {
             if (collection_counts[item] < 1) {
@@ -114,6 +116,7 @@ $(document).ready(function () {
         }
         return true;
     }
+
     function makePopUp (innards, buttons) {
         $body.append('<div class="pop-up"></div>');
         $body.append('<div class="pop-up-overlay"></div>');
@@ -124,10 +127,12 @@ $(document).ready(function () {
             $(".pop-up").append('<button class="'+ buttons[button]+'">' + buttons[button] + '</button>');
         }
     }
+
     function removePopUp (){
         $('.pop-up').remove();
         $('.pop-up-overlay').remove(); 
     }
+    
     $items.sortable();
     //add ingredients to bag when clicked on
     $('.wrapper').on('click', '.ingredient', function () {

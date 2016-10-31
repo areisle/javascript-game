@@ -22,47 +22,40 @@
   left: 45vh;
   top: 45vh; }
 
-.view > * {
-  position: absolute;
-  display: block;
-  width: 10vh;
-  height: 10vh;
-  border: 3px solid black; }
-  .view > *:hover {
-    background-color: rgba(34, 0, 78, 0.4); }
+#cellar-view {
+  background-image: url("../images/cellar.jpg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat; }
+  #cellar-view .onions {
+    top: 10vh;
+    left: 20vh; }
+  #cellar-view .garlic {
+    top: 40vh; }
+  #cellar-view .wine {
+    left: 0vh;
+    width: 20vh;
+    top: 35vh;
+    height: 50vh; }
+  #cellar-view .mushrooms {
+    left: 70vh;
+    top: 80vh; }
 
-#onions {
-  top: 10vh;
-  left: 20vh; }
-
-#garlic {
-  top: 40vh; }
-
-#wine {
-  left: 50vh;
-  top: 60vh; }
-
-#mushrooms {
-  left: 70vh;
-  top: 80vh; }
-
-.stock {
+#stove-view .stock {
   top: 50vh;
   left: 50vh; }
-
-.butter {
-  top: 50vh;
-  left: 50vh; }
-
-.parmesan {
-  top: 10vh;
-  left: 50vh; }
-
-.pot {
+#stove-view .pot {
   left: 40vh;
   top: 20vh; }
 
-.book {
+#ice-box-view .butter {
+  top: 50vh;
+  left: 50vh; }
+#ice-box-view .parmesan {
+  top: 10vh;
+  left: 50vh; }
+
+#shelf-view .book {
   top: 50vh;
   left: 10vh; }
 
@@ -87,6 +80,49 @@
     height: 100vh; } }
 
 @keyframes flash-and-fill {
+  0% {
+    opacity: 1;
+    stroke: green;
+    stroke-dashoffset: 100; }
+  34% {
+    opacity: 1; }
+  42% {
+    opacity: 0.5; }
+  50% {
+    opacity: 1; }
+  54% {
+    opacity: 1; }
+  62% {
+    opacity: 0.5; }
+  70% {
+    opacity: 1;
+    stroke: yellow; }
+  74% {
+    opacity: 1; }
+  77% {
+    opacity: 0.5; }
+  80% {
+    opacity: 1; }
+  84% {
+    opacity: 1; }
+  87% {
+    opacity: 0.5; }
+  90% {
+    opacity: 1;
+    stroke: orange; }
+  92% {
+    opacity: 1; }
+  94% {
+    opacity: 0.5; }
+  96% {
+    opacity: 1; }
+  98% {
+    opacity: 0.5; }
+  100% {
+    opacity: 1;
+    stroke: red;
+    stroke-dashoffset: 0; } }
+@keyframes flash-and-fill-copy {
   0% {
     opacity: 1;
     stroke: green;
@@ -160,6 +196,19 @@ html, body, .wrapper {
   padding: 0;
   width: 80vw;
   height: 100vh; }
+
+.view > * {
+  position: absolute;
+  display: block;
+  width: 10vh;
+  height: 10vh;
+  border: 3px solid black; }
+  .view > *:hover {
+    background-color: rgba(34, 0, 78, 0.4); }
+
+button {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: white; }
 
 .items {
   display: flex;
