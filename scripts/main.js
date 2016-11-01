@@ -43,7 +43,7 @@ $(document).ready(function () {
         //add ingredient to ingredients_collected
         if (items_collected < 10) {
             // <div class="item ingredient"> ingredient <button class="trash">remove</button></div>
-            var $current_item = $('<div class="item ' + $(item).attr('id') + '"><button class="trash">remove</button>' + $(item).attr('id') + '</div>'),
+            var $current_item = $('<div class="item ' + $(item).attr('id') + '">' + $(item).attr('id') + '<button class="trash">remove</button></div>'),
                 name = $(item).attr('id'),
                 state = 0,
                 stage = "unknown",

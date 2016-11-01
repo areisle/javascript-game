@@ -3,9 +3,7 @@
   display: block;
   width: 10vh;
   height: 10vh;
-  border: 3px solid black; }
-  .view > a:hover {
-    background-color: rgba(34, 0, 78, 0.4); }
+  border: none; }
 
 #kitchen-view .ice-box {
   top: 10vh;
@@ -75,9 +73,7 @@
 #cutting-board-view .cutting-board div {
   width: 50%;
   height: 50%;
-  border: 3px solid black; }
-  #cutting-board-view .cutting-board div:hover {
-    background-color: rgba(34, 0, 78, 0.4); }
+  border: none; }
 #cutting-board-view .drop-hover {
   background-color: rgba(34, 0, 78, 0.4); }
 @media screen and (min-aspect-ratio: 100 / 80) {
@@ -196,7 +192,9 @@ html, body, .wrapper {
 .wrapper {
   display: flex;
   -webkit-perspective: 1200;
-  perspective: 1200; }
+  perspective: 1200;
+  background-color: gray;
+  background-size: 20% auto; }
 
 #view-wrapper {
   width: 75vw;
@@ -207,44 +205,58 @@ html, body, .wrapper {
   width: 80vw;
   height: 80vw;
   margin: 0 auto;
-  border: 3px solid black; }
-  .view:hover {
-    background-color: rgba(34, 0, 78, 0.4); }
+  border: none; }
 
 .view > * {
   position: absolute;
   display: block;
   width: 10vh;
   height: 10vh;
-  border: 3px solid black; }
-  .view > *:hover {
-    background-color: rgba(34, 0, 78, 0.4); }
+  border: none; }
 
 button {
-  background-color: rgba(255, 255, 255, 0.2);
-  color: white; }
+  background-color: transparent;
+  color: yellow; }
+  button:focus {
+    outline: none; }
 
 .items {
+  background-image: url("../images/butcherblock.jpg");
+  background-size: 100% auto;
+  background-repeat: repeat;
   width: 25vw;
   height: 100vh;
-  border: 3px solid black;
+  border: none;
   overflow-y: scroll; }
-  .items:hover {
-    background-color: rgba(34, 0, 78, 0.4); }
   .items .item {
-    border: 3px solid black;
-    width: 20vw;
-    height: 20vw;
+    position: relative;
+    border: none;
+    width: 15vw;
+    height: 15vw;
     background-size: auto 100%;
-    background-position: 0% center; }
-    .items .item:hover {
-      background-color: rgba(34, 0, 78, 0.4); }
+    background-position: 0% center;
+    background-repeat: no-repeat;
+    margin: 0 auto; }
+    .items .item button {
+      position: absolute;
+      right: 0%;
+      top: 0%;
+      width: 30%;
+      height: 30%;
+      border: none; }
     .items .item.onions {
       background-image: url("../images/onions.png"); }
     .items .item.garlic {
       background-image: url("../images/garlic.png"); }
     .items .item.mushrooms {
       background-image: url("../images/mushrooms.png"); }
+    .items .item.wine {
+      background-image: url("../images/wine-bottle-2.png");
+      background-position: center center; }
+
+.nav.back {
+  right: 0%;
+  top: 0%; }
 
 .pop-up {
   position: fixed;
@@ -253,10 +265,8 @@ button {
   width: 50%;
   height: 50%;
   background-color: rgba(255, 255, 255, 0.6);
-  border: 3px solid black;
+  border: none;
   z-index: 200; }
-  .pop-up:hover {
-    background-color: rgba(34, 0, 78, 0.4); }
 
 .pop-up-overlay {
   position: fixed;

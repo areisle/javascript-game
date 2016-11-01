@@ -15,6 +15,9 @@ html, body, .wrapper {
 	display: flex;
 	-webkit-perspective:1200;
 	perspective:1200;
+    //background-image: url('../images/wallpaper.jpg');
+    background-color: rgba(128,128,128,1);
+    background-size: 20% auto;
 }
 #view-wrapper {
 	width: 75vw;
@@ -35,22 +38,38 @@ html, body, .wrapper {
 		@include testing;
 }
 button {
-	background-color: rgba(255,255,255,0.2);
-	color: white;
+	background-color: transparent;
+    //rgba(255,255,255,0.2);
+	color: yellow;
+    &:focus {
+        outline: none;
+    }
 }
 .items {
-//	display: flex;
-//	flex-direction: column;
+    background-image: url('../images/butcherblock.jpg');
+    background-size: 100% auto;
+    background-repeat: repeat;
 	width: 25vw;
 	height: 100vh;
 	@include testing;
     overflow-y: scroll;
 	.item {
+        position: relative;
 		@include testing;
-        width: 20vw;
-		height: 20vw;
+        width: 15vw;
+		height: 15vw;
 		background-size: auto 100%;
 		background-position: 0% center;
+        background-repeat: no-repeat;
+        margin: 0 auto;
+        button {
+            position: absolute;
+            right: 0%;
+            top: 0%;
+            width: 30%;
+            height: 30%;
+            border: none;
+        }
 		&.onions {
 			background-image: url('../images/onions.png');
 		}
@@ -60,10 +79,16 @@ button {
 		&.mushrooms {
 			background-image: url('../images/mushrooms.png');
 		}
-
+        &.wine {
+			background-image: url('../images/wine-bottle-2.png');
+            background-position: center center;
+		}
 	}
 }
-
+.nav.back {
+    right: 0%;
+    top: 0%;
+}
 .pop-up {
     position: fixed;
     top: 25%;
