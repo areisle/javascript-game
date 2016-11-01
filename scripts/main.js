@@ -11,7 +11,8 @@ $(document).ready(function () {
                              "parmesan": 0,
                              "butter": 0,
                              "stock": 0},
-        cookingStages = ['soffrito', 'tostatura', 'apples', 'deglaze', 'cottura', 'mantecatura'],
+        cookingStages = ['soffrito', 'tostatura', 'deglaze', 'cottura', 'mantecatura'],
+        currentStage = "raw",
         startTime = "new",
         animationEvent = whichAnimationEvent(),
         $body = $('body'),
@@ -45,6 +46,7 @@ $(document).ready(function () {
                 cut = false;
             collection_counts[name]++;
             $items.append($current_item);
+            $current_item
             //add ingredient data
             // check ingredient type cut=true for onions, garlic, mushrooms
             // possible stages - soffrito, tostatura, deglaze, cottura, mantecatura
@@ -195,17 +197,23 @@ $(document).ready(function () {
         }
         
     }
+
     function popUpLoop () {
         //base case
         console.log("pop-up-loop called");
         if (cookingStages.length === 0) {
             console.log("ended");
             //end of game stuff
+            makePopUp(["the game is over! clikc okay to recieve your score"],['ok']);
+            $body.one('click', '.pop-up button.ok', function(e) {
+                removePopUp();
+                //go to end of game screen
+            });
             return;
         } else {
             var copy;
             //toggle for animation to make it restart
-            if (((cookingStages.length-1) % 2) === 0) {
+            if (((cookingStages.length) % 2) === 0) {
                 copy = 0;
             } else {
                 copy = 1;
@@ -234,6 +242,7 @@ $(document).ready(function () {
             });
         }
     }
+
     function navigate(href) {
         "use strict";
         var $view = $('#view-wrapper');
@@ -296,6 +305,7 @@ $(document).ready(function () {
               });
         }
     }
+
     //occurs when item is added to the list
     function handleDropEvent(event, ui) {
       ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
@@ -304,6 +314,7 @@ $(document).ready(function () {
       ui.draggable.append("<p>cut type: " + $(this).data("cut") +"</p>");
       ui.draggable.data("state", $(this).data("cut"));  
     }
+
     function handleCookingDropEvent(event, ui) {
         console.log("entered handleCookingDropEvent function");
         //once item is added, remove istead of revert
@@ -317,6 +328,7 @@ $(document).ready(function () {
           }
         ui.draggable.remove();
     }
+
     function checkCut(e) {
         if (e.data("cut") === true && e.data("state") < $(this).data("cut") ) {
             return true;

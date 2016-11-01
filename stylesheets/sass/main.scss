@@ -40,8 +40,21 @@ button {
 	.item {
 		@include testing;
 		height: 20vw;
+		background-size: auto 100%;
+		background-position: 0% center;
+		&.onions {
+			background-image: url('../images/onions.png');
+		}
+		&.garlic {
+			background-image: url('../images/garlic.png');
+		}
+		&.mushrooms {
+			background-image: url('../images/mushrooms.png');
+		}
+
 	}
 }
+
 .pop-up {
     position: fixed;
     top: 25%;

@@ -31,7 +31,8 @@
     top: 10vh;
     left: 20vh; }
   #cellar-view .garlic {
-    top: 40vh; }
+    top: 40vh;
+    left: 60vh; }
   #cellar-view .wine {
     left: 0vh;
     width: 20vh;
@@ -220,9 +221,17 @@ button {
     background-color: rgba(34, 0, 78, 0.4); }
   .items .item {
     border: 3px solid black;
-    height: 20vw; }
+    height: 20vw;
+    background-size: auto 100%;
+    background-position: 0% center; }
     .items .item:hover {
       background-color: rgba(34, 0, 78, 0.4); }
+    .items .item.onions {
+      background-image: url("../images/onions.png"); }
+    .items .item.garlic {
+      background-image: url("../images/garlic.png"); }
+    .items .item.mushrooms {
+      background-image: url("../images/mushrooms.png"); }
 
 .pop-up {
   position: fixed;
