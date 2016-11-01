@@ -142,6 +142,7 @@ $(document).ready(function () {
     function makePopUp (innards, buttons) {
         $body.append('<div class="pop-up"></div>');
         $body.append('<div class="pop-up-overlay"></div>');
+        $(".pop-up").append('<h2>' + innards.shift() +'</h2>');
         for (var innard in innards){
             $(".pop-up").append('<p>' + innards[innard]+'</p>');
         }

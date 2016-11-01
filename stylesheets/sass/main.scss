@@ -89,8 +89,14 @@ button {
     right: 0%;
     top: 0%;
 }
+button {
+    cursor: pointer;
+}
 .pop-up {
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     top: 25%;
     left: 12.5%;
     width: 50%;
@@ -98,6 +104,10 @@ button {
     background-color: rgba(255,255,255,0.6);
     @include testing;
     z-index: 200;
+    h2 {
+        font-size: 3vw;
+        text-align: center;
+    }
 }
 .pop-up-overlay {
         position: fixed;

@@ -3,7 +3,9 @@
   display: block;
   width: 10vh;
   height: 10vh;
-  border: none; }
+  border: 3px solid black; }
+  .view > a:hover {
+    background-color: rgba(34, 0, 78, 0.4); }
 
 #kitchen-view .ice-box {
   top: 10vh;

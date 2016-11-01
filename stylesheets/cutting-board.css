@@ -8,7 +8,9 @@
 #cutting-board-view .cutting-board div {
   width: 50%;
   height: 50%;
-  border: none; }
+  border: 3px solid black; }
+  #cutting-board-view .cutting-board div:hover {
+    background-color: rgba(34, 0, 78, 0.4); }
 #cutting-board-view .drop-hover {
   background-color: rgba(34, 0, 78, 0.4); }
 @media screen and (min-aspect-ratio: 100 / 80) {
