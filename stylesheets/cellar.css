@@ -4,18 +4,23 @@
   background-position: center;
   background-repeat: no-repeat; }
   #cellar-view .onions {
-    top: 10vh;
-    left: 20vh; }
+    top: 75%;
+    left: 75%;
+    width: 15%;
+    height: 10%; }
   #cellar-view .garlic {
-    top: 40vh;
-    left: 60vh; }
+    top: 25%;
+    left: 75%;
+    height: 30%; }
   #cellar-view .wine {
-    left: 0vh;
-    width: 20vh;
-    top: 35vh;
-    height: 50vh; }
+    left: 5%;
+    width: 20%;
+    top: 35%;
+    height: 50%; }
   #cellar-view .mushrooms {
-    left: 70vh;
-    top: 80vh; }
+    top: 65%;
+    left: 65%;
+    width: 15%;
+    height: 10%; }
 
 /*# sourceMappingURL=cellar.css.map */

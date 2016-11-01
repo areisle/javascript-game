@@ -28,19 +28,24 @@
   background-position: center;
   background-repeat: no-repeat; }
   #cellar-view .onions {
-    top: 10vh;
-    left: 20vh; }
+    top: 75%;
+    left: 75%;
+    width: 15%;
+    height: 10%; }
   #cellar-view .garlic {
-    top: 40vh;
-    left: 60vh; }
+    top: 25%;
+    left: 75%;
+    height: 30%; }
   #cellar-view .wine {
-    left: 0vh;
-    width: 20vh;
-    top: 35vh;
-    height: 50vh; }
+    left: 5%;
+    width: 20%;
+    top: 35%;
+    height: 50%; }
   #cellar-view .mushrooms {
-    left: 70vh;
-    top: 80vh; }
+    top: 65%;
+    left: 65%;
+    width: 15%;
+    height: 10%; }
 
 #stove-view .stock {
   top: 50vh;
@@ -180,7 +185,7 @@
     stroke-width: 100%;
     stroke-dasharray: 100 100; }
 #pot-view .run-timer {
-  animation: flash-and-fill 3s linear;
+  animation: flash-and-fill 16s linear;
   animation-iteration-count: 1;
   animation-play-state: paused; }
 
@@ -193,10 +198,18 @@ html, body, .wrapper {
   -webkit-perspective: 1200;
   perspective: 1200; }
 
-.view {
-  padding: 0;
-  width: 80vw;
+#view-wrapper {
+  width: 75vw;
   height: 100vh; }
+
+.view {
+  position: relative;
+  width: 80vw;
+  height: 80vw;
+  margin: 0 auto;
+  border: 3px solid black; }
+  .view:hover {
+    background-color: rgba(34, 0, 78, 0.4); }
 
 .view > * {
   position: absolute;
@@ -212,15 +225,15 @@ button {
   color: white; }
 
 .items {
-  display: flex;
-  flex-direction: column;
-  width: 20vw;
+  width: 25vw;
   height: 100vh;
-  border: 3px solid black; }
+  border: 3px solid black;
+  overflow-y: scroll; }
   .items:hover {
     background-color: rgba(34, 0, 78, 0.4); }
   .items .item {
     border: 3px solid black;
+    width: 20vw;
     height: 20vw;
     background-size: auto 100%;
     background-position: 0% center; }
@@ -236,7 +249,7 @@ button {
 .pop-up {
   position: fixed;
   top: 25%;
-  left: 25%;
+  left: 12.5%;
   width: 50%;
   height: 50%;
   background-color: rgba(255, 255, 255, 0.6);
@@ -253,5 +266,10 @@ button {
   width: 100%;
   height: 100%;
   z-index: 100; }
+
+@media screen and (min-aspect-ratio: 100 / 75) {
+  .view {
+    width: 100vh;
+    height: 100vh; } }
 
 /*# sourceMappingURL=main.css.map */

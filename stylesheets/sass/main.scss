@@ -6,6 +6,7 @@
 @import "cutting-board.scss";
 @import "pot.scss";
 $items-width: 20;
+$unit: vw;
 html, body, .wrapper {
 	width: 100%;
 	height: 100%;
@@ -15,10 +16,16 @@ html, body, .wrapper {
 	-webkit-perspective:1200;
 	perspective:1200;
 }
-.view {
-	padding: 0;
-	width: 80vw;
+#view-wrapper {
+	width: 75vw;
 	height: 100vh;
+}
+.view {
+    position: relative;
+    width:80+$unit;
+    height:80+$unit;
+    margin: 0 auto;
+    @include testing;
 }
 .view > * {
 		position: absolute;
@@ -32,13 +39,15 @@ button {
 	color: white;
 }
 .items {
-	display: flex;
-	flex-direction: column;
-	width: 20vw;
+//	display: flex;
+//	flex-direction: column;
+	width: 25vw;
 	height: 100vh;
 	@include testing;
+    overflow-y: scroll;
 	.item {
 		@include testing;
+        width: 20vw;
 		height: 20vw;
 		background-size: auto 100%;
 		background-position: 0% center;
@@ -58,7 +67,7 @@ button {
 .pop-up {
     position: fixed;
     top: 25%;
-    left: 25%;
+    left: 12.5%;
     width: 50%;
     height: 50%;
     background-color: rgba(255,255,255,0.6);
@@ -74,6 +83,10 @@ button {
         height: 100%;
         z-index: 100;
     }
-@media screen and (min-aspect-ratio: 100/80) {
-	
+@media screen and (min-aspect-ratio: 100/75) {
+    $unit: vh;
+	.view {
+        width:100+$unit;
+        height:100+$unit;
+    }
 }
