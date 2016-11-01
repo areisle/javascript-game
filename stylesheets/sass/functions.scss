@@ -1,4 +1,4 @@
-$testing: true;
+$testing: false;
 @mixin testing{
 	@if $testing {
 		border: 3px solid black;
@@ -8,4 +8,9 @@ $testing: true;
 	} @else {
 		border:none;
 	}
+}
+%view-background {
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
 }

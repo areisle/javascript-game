@@ -12,7 +12,10 @@ $items-width: 20;
 	.cutting-board div {
 		width: 50%;
 		height: 50%;
-		@include testing;
+		border: 3px solid black;
+		&:hover {
+		background-color: rgba(34,0,78, 0.4);
+		}
 	}
 	.drop-hover {
 		background-color: rgba(34,0,78, 0.4);

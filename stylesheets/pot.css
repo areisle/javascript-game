@@ -1,105 +1,35 @@
-@keyframes flash-and-fill {
-  0% {
-    opacity: 1;
-    stroke: green;
-    stroke-dashoffset: 100; }
-  34% {
-    opacity: 1; }
-  42% {
-    opacity: 0.5; }
-  50% {
-    opacity: 1; }
-  54% {
-    opacity: 1; }
-  62% {
-    opacity: 0.5; }
-  70% {
-    opacity: 1;
-    stroke: yellow; }
-  74% {
-    opacity: 1; }
-  77% {
-    opacity: 0.5; }
-  80% {
-    opacity: 1; }
-  84% {
-    opacity: 1; }
-  87% {
-    opacity: 0.5; }
-  90% {
-    opacity: 1;
-    stroke: orange; }
-  92% {
-    opacity: 1; }
-  94% {
-    opacity: 0.5; }
-  96% {
-    opacity: 1; }
-  98% {
-    opacity: 0.5; }
-  100% {
-    opacity: 1;
-    stroke: red;
-    stroke-dashoffset: 0; } }
-@keyframes flash-and-fill-copy {
-  0% {
-    opacity: 1;
-    stroke: green;
-    stroke-dashoffset: 100; }
-  34% {
-    opacity: 1; }
-  42% {
-    opacity: 0.5; }
-  50% {
-    opacity: 1; }
-  54% {
-    opacity: 1; }
-  62% {
-    opacity: 0.5; }
-  70% {
-    opacity: 1;
-    stroke: yellow; }
-  74% {
-    opacity: 1; }
-  77% {
-    opacity: 0.5; }
-  80% {
-    opacity: 1; }
-  84% {
-    opacity: 1; }
-  87% {
-    opacity: 0.5; }
-  90% {
-    opacity: 1;
-    stroke: orange; }
-  92% {
-    opacity: 1; }
-  94% {
-    opacity: 0.5; }
-  96% {
-    opacity: 1; }
-  98% {
-    opacity: 0.5; }
-  100% {
-    opacity: 1;
-    stroke: red;
-    stroke-dashoffset: 0; } }
-#pot-view .pot.cooking {
-  top: 50vh;
-  left: 50vh; }
-#pot-view svg.pie-timer {
-  width: 200px;
-  height: 200px;
-  transform: rotate(-90deg);
-  fill: transparent;
-  border-radius: 50%; }
-  #pot-view svg.pie-timer circle {
-    stroke: red;
-    stroke-width: 100%;
-    stroke-dasharray: 100 100; }
-#pot-view .run-timer {
-  animation: flash-and-fill 16s linear;
-  animation-iteration-count: 1;
-  animation-play-state: paused; }
+/*
+Sass::SyntaxError: "#pot-view" failed to @extend "%view-background".
+The selector "%view-background" was not found.
+Use "@extend %view-background !optional" if the extend should be able to fail.
 
-/*# sourceMappingURL=pot.css.map */
+
+Backtrace:
+stylesheets/sass/pot.scss:45
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/tree/visitors/extend.rb:62:in `block in check_extends_fired!'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/util/subset_map.rb:105:in `block in each_value'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/util/subset_map.rb:105:in `each'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/util/subset_map.rb:105:in `each_value'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/tree/visitors/extend.rb:51:in `check_extends_fired!'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/tree/visitors/extend.rb:16:in `visit'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/tree/root_node.rb:39:in `css_tree'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/engine.rb:381:in `_render_with_sourcemap'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/engine.rb:298:in `render_with_sourcemap'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `each'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:473:in `on_file_changed'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/lib/sass/plugin/compiler.rb:331:in `block in watch'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/vendor/listen/lib/listen/listener.rb:252:in `call'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/vendor/listen/lib/listen/listener.rb:252:in `on_change'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/vendor/listen/lib/listen/listener.rb:290:in `block in initialize_adapter'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/vendor/listen/lib/listen/adapters/polling.rb:48:in `call'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/vendor/listen/lib/listen/adapters/polling.rb:48:in `poll_changed_directories'
+C:/Ruby22/lib/ruby/gems/2.2.0/gems/sass-3.4.22/vendor/listen/lib/listen/adapter.rb:299:in `block in start_poller'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Sass::SyntaxError: \"#pot-view\" failed to @extend \"%view-background\".\A The selector \"%view-background\" was not found.\A Use \"@extend %view-background !optional\" if the extend should be able to fail.\A "; }

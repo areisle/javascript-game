@@ -1,23 +1,35 @@
 
 #stove-view {
+	background-image: url('../images/temp-stove.jpg');
+	@extend %view-background;
 	.stock {
-		top: 50vh;
-		left: 50vh;
+		top: 50%;
+		left: 35%;
+		width: 15%;
+		height: 16%;
 	}
 	.pot {
-	    left: 40vh;
-	    top: 20vh;
+	    left: 20%;
+	    top: 56%;
+	    width: 12%;
+	    height: 12%;
 	}
 }
 
 #ice-box-view {
+	@extend %view-background;
+	background-image: url('../images/ice-box-open.png');
 	.butter {
-		top: 50vh;
-		left: 50vh;
+		top: 40%;
+		left: 28%;
+		width: 20%;
+		height: 12%;
 	}
 	.parmesan {
-		top: 10vh;
-		left: 50vh;
+		top: 23%;
+		left: 28%;
+		width: 20%;
+		height: 15%;
 	}
 	
 }

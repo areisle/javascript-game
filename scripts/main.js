@@ -43,7 +43,7 @@ $(document).ready(function () {
         //add ingredient to ingredients_collected
         if (items_collected < 10) {
             // <div class="item ingredient"> ingredient <button class="trash">remove</button></div>
-            var $current_item = $('<div class="item ' + $(item).attr('id') + '">' + $(item).attr('id') + '<button class="trash">remove</button></div>'),
+            var $current_item = $('<div class="item ' + $(item).attr('id') + '">' + $(item).attr('id') + '<button class="trash"></button></div>'),
                 name = $(item).attr('id'),
                 state = 0,
                 stage = "unknown",
@@ -116,7 +116,7 @@ $(document).ready(function () {
                 return 0;
             }
         }
-        var finalScore = (score.cutting + score.timing)/12*100;
+        var finalScore = Math.round(10*(score.cutting + score.timing)/12*100)/10;
         return finalScore;
     }
     function removeItem(item) {
@@ -325,6 +325,14 @@ $(document).ready(function () {
                     hoverClass: 'drop-hover',
                     tolerance: 'pointer'
               });
+                $('.cut.grate')
+                .data({"cut": 3})
+                .droppable({
+                    accept: '.parmesan',
+                    drop: handleDropEvent,
+                    hoverClass: 'drop-hover',
+                    tolerance: 'pointer'
+              });
 
         } else if (view_name==="pot") {
             $items.sortable('option','containment','window');
@@ -435,7 +443,7 @@ $(document).ready(function () {
             case 'mantecatura':
                 if ($(item).data().name === 'parmesan') {
                     //parmesan added
-                    if ($(item).data('state') === 1) {
+                    if ($(item).data('state') === 3) {
                         //parm was grated
                     }
                 }

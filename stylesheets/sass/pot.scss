@@ -41,13 +41,18 @@
 
 #pot-view {
     //temporary for testing navigation
+    background-image: url('../images/pot.png');
+    @extend %view-background;
     .pot.cooking {
-        top: 50vh;
-        left: 50vh;
+        top: 20%;
+        left: 40%;
     }
     svg.pie-timer {
-      width: 200px; 
-      height: 200px;
+        position: absolute;
+      width: 40%; 
+      height: 40%;
+      bottom: 5%;
+      left: 30%;
       transform: rotate(-90deg);
       fill: transparent;
       border-radius: 50%;

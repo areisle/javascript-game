@@ -1,8 +1,10 @@
 #cellar-view {
-  background-image: url("../images/cellar.jpg");
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat; }
+
+#cellar-view {
+  background-image: url("../images/cellar.jpg"); }
   #cellar-view .onions {
     top: 75%;
     left: 75%;

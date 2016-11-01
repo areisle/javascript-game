@@ -1,29 +1,49 @@
 @import "functions.scss";
-.view > a {
-	position: absolute;
-	display: block;
-	width: 10vh;
-	height: 10vh;
-	@include testing;
-}
 #kitchen-view {
+  width:75vw;
+  height:60vw;
+	background-image: url('../images/kitchen.jpg');
+	@extend %view-background;
 	.ice-box {
-		top: 10vh;
-		left: 20vh;
+		top: 40%;
+		left: 0%;
+		height: 40%;
+		width: 18%;
 	}
 	.stove {
-		top: 40vh;
+		right: 40%;
+		top: 50%;
+		height: 25%;
+		width: 20%;
 	}
 	.cellar {
-		left: 50vh;
-		top: 60vh;
+		right: 15%;
+		top: 40%;
+		width: 10%;
+		height: 20%;
 	}
 	.shelf {
-		left: 70vh;
-		top: 80vh;
+		right: 0%;
+		top: 40%;
+		width: 10%;
+		height:15%;
 	}
 	.rice {
-		left: 45vh;
-		top: 45vh;
+		right: 0%;
+		top: 70%;
+		width: 15%;
+		height:15%;
 	}
+	.cutting-board {
+		right: 15%;
+		top: 63%;
+		height: 12%;
+		width: 20%;
+	}
+}
+@media screen and (min-aspect-ratio: 5/3) {
+	#kitchen-view {
+      width:125vh;
+      height:100vh;
+  }
 }

@@ -1,32 +1,59 @@
-.view > a {
-  position: absolute;
-  display: block;
-  width: 10vh;
-  height: 10vh;
-  border: 3px solid black; }
-  .view > a:hover {
-    background-color: rgba(34, 0, 78, 0.4); }
-
-#kitchen-view .ice-box {
-  top: 10vh;
-  left: 20vh; }
-#kitchen-view .stove {
-  top: 40vh; }
-#kitchen-view .cellar {
-  left: 50vh;
-  top: 60vh; }
-#kitchen-view .shelf {
-  left: 70vh;
-  top: 80vh; }
-#kitchen-view .rice {
-  left: 45vh;
-  top: 45vh; }
-
-#cellar-view {
-  background-image: url("../images/cellar.jpg");
+#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #pot-view, .items .item button {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat; }
+
+#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #pot-view, .items .item button {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+#kitchen-view {
+  width: 75vw;
+  height: 60vw;
+  background-image: url("../images/kitchen.jpg"); }
+  #kitchen-view .ice-box {
+    top: 40%;
+    left: 0%;
+    height: 40%;
+    width: 18%; }
+  #kitchen-view .stove {
+    right: 40%;
+    top: 50%;
+    height: 25%;
+    width: 20%; }
+  #kitchen-view .cellar {
+    right: 15%;
+    top: 40%;
+    width: 10%;
+    height: 20%; }
+  #kitchen-view .shelf {
+    right: 0%;
+    top: 40%;
+    width: 10%;
+    height: 15%; }
+  #kitchen-view .rice {
+    right: 0%;
+    top: 70%;
+    width: 15%;
+    height: 15%; }
+  #kitchen-view .cutting-board {
+    right: 15%;
+    top: 63%;
+    height: 12%;
+    width: 20%; }
+
+@media screen and (min-aspect-ratio: 5 / 3) {
+  #kitchen-view {
+    width: 125vh;
+    height: 100vh; } }
+#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #pot-view, .items .item button {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+#cellar-view {
+  background-image: url("../images/cellar.jpg"); }
   #cellar-view .onions {
     top: 75%;
     left: 75%;
@@ -52,23 +79,44 @@
     top: 25%;
     height: 50%; }
 
-#stove-view .stock {
-  top: 50vh;
-  left: 50vh; }
-#stove-view .pot {
-  left: 40vh;
-  top: 20vh; }
+#stove-view {
+  background-image: url("../images/temp-stove.jpg"); }
+  #stove-view .stock {
+    top: 50%;
+    left: 35%;
+    width: 15%;
+    height: 16%; }
+  #stove-view .pot {
+    left: 20%;
+    top: 56%;
+    width: 12%;
+    height: 12%; }
 
-#ice-box-view .butter {
-  top: 50vh;
-  left: 50vh; }
-#ice-box-view .parmesan {
-  top: 10vh;
-  left: 50vh; }
+#ice-box-view {
+  background-image: url("../images/ice-box-open.png"); }
+  #ice-box-view .butter {
+    top: 40%;
+    left: 28%;
+    width: 20%;
+    height: 12%; }
+  #ice-box-view .parmesan {
+    top: 23%;
+    left: 28%;
+    width: 20%;
+    height: 15%; }
 
-#shelf-view .book {
-  top: 50vh;
-  left: 10vh; }
+#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #pot-view, .items .item button {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+#shelf-view {
+  background-image: url("../images/clipboard.png"); }
+
+#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #pot-view, .items .item button {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat; }
 
 #cutting-board-view .cutting-board {
   display: flex;
@@ -176,24 +224,38 @@
     opacity: 1;
     stroke: red;
     stroke-dashoffset: 0; } }
-#pot-view .pot.cooking {
-  top: 50vh;
-  left: 50vh; }
-#pot-view svg.pie-timer {
-  width: 200px;
-  height: 200px;
-  transform: rotate(-90deg);
-  fill: transparent;
-  border-radius: 50%; }
-  #pot-view svg.pie-timer circle {
-    stroke: red;
-    stroke-width: 100%;
-    stroke-dasharray: 100 100; }
-#pot-view .run-timer {
-  animation: flash-and-fill 16s linear;
-  animation-iteration-count: 1;
-  animation-play-state: paused; }
+#pot-view {
+  background-image: url("../images/pot.png"); }
+  #pot-view .pot.cooking {
+    top: 20%;
+    left: 40%; }
+  #pot-view svg.pie-timer {
+    position: absolute;
+    width: 40%;
+    height: 40%;
+    bottom: 5%;
+    left: 30%;
+    transform: rotate(-90deg);
+    fill: transparent;
+    border-radius: 50%; }
+    #pot-view svg.pie-timer circle {
+      stroke: red;
+      stroke-width: 100%;
+      stroke-dasharray: 100 100; }
+  #pot-view .run-timer {
+    animation: flash-and-fill 16s linear;
+    animation-iteration-count: 1;
+    animation-play-state: paused; }
 
+@font-face {
+  font-family: castro;
+  src: url("../fonts/castro/castro.ttf"); }
+@font-face {
+  font-family: sidhe;
+  src: url("../fonts/sidhe/sidhe.ttf"); }
+@font-face {
+  font-family: lewis;
+  src: url("../fonts/lewis/LewisCarroll.ttf"); }
 html, body, .wrapper {
   width: 100%;
   height: 100%; }
@@ -202,7 +264,6 @@ html, body, .wrapper {
   display: flex;
   -webkit-perspective: 1200;
   perspective: 1200;
-  background-color: gray;
   background-size: 20% auto; }
 
 #view-wrapper {
@@ -211,24 +272,21 @@ html, body, .wrapper {
 
 .view {
   position: relative;
-  width: 80vw;
-  height: 80vw;
+  width: 75vw;
+  height: 75vw;
   margin: 0 auto;
-  border: 3px solid black; }
-  .view:hover {
-    background-color: rgba(34, 0, 78, 0.4); }
+  border: none; }
 
 .view > * {
   position: absolute;
   display: block;
   width: 10vh;
   height: 10vh;
-  border: 3px solid black; }
-  .view > *:hover {
-    background-color: rgba(34, 0, 78, 0.4); }
+  border: none; }
 
 button {
   background-color: transparent;
+  border: none;
   color: yellow; }
   button:focus {
     outline: none; }
@@ -239,27 +297,27 @@ button {
   background-repeat: repeat;
   width: 25vw;
   height: 100vh;
-  border: 3px solid black;
+  border: none;
   overflow-y: scroll; }
-  .items:hover {
-    background-color: rgba(34, 0, 78, 0.4); }
   .items .item {
     position: relative;
-    border: 3px solid black;
+    border: none;
     width: 15vw;
     height: 15vw;
+    max-width: 200px;
+    max-height: 200px;
     background-size: auto 100%;
     background-position: 0% center;
     background-repeat: no-repeat;
-    margin: 0 auto; }
-    .items .item:hover {
-      background-color: rgba(34, 0, 78, 0.4); }
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.1); }
     .items .item button {
+      background-image: url("../images/trash-icon.png");
       position: absolute;
-      right: 0%;
-      top: 0%;
-      width: 30%;
-      height: 30%;
+      right: 10%;
+      top: 10%;
+      width: 20%;
+      height: 20%;
       border: none; }
     .items .item.onions {
       background-image: url("../images/onions.png"); }
@@ -270,6 +328,17 @@ button {
     .items .item.wine {
       background-image: url("../images/wine-bottle-2.png");
       background-position: center center; }
+    .items .item.rice {
+      background-image: url("../images/arborio.png");
+      background-position: center center; }
+    .items .item.stock {
+      background-image: url("../images/stock.png");
+      background-position: center center; }
+    .items .item.butter {
+      background-image: url("../images/butter.png");
+      background-position: center center; }
+    .items .item.parmesan {
+      background-image: url("../images/parmesan.png"); }
 
 .nav.back {
   right: 0%;
@@ -288,13 +357,28 @@ button {
   width: 50%;
   height: 50%;
   background-color: rgba(255, 255, 255, 0.6);
-  border: 3px solid black;
-  z-index: 200; }
-  .pop-up:hover {
-    background-color: rgba(34, 0, 78, 0.4); }
+  border: none;
+  z-index: 200;
+  padding: 3%; }
   .pop-up h2 {
-    font-size: 3vw;
-    text-align: center; }
+    font-size: 3.5vw;
+    text-align: center;
+    font-family: lewis, serif; }
+  .pop-up p {
+    font-family: sidhe, serif;
+    text-align: center;
+    font-size: 2vw; }
+  .pop-up button {
+    outline: none;
+    margin: 0% 10%;
+    padding: 10%;
+    font-family: lewis, serif;
+    font-size: 3.5vw;
+    background-color: rgba(64, 64, 64, 0.5);
+    color: white;
+    transition: background-color 0.5s; }
+    .pop-up button:hover {
+      background-color: #9f1212; }
 
 .pop-up-overlay {
   position: fixed;

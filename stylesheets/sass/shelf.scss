@@ -1,8 +1,7 @@
+@import "functions.scss";
 #shelf-view {
-	.book {
-		top:50vh;
-		left: 10vh;
-	}
+	background-image: url('../images/clipboard.png');
+	@extend %view-background;
 }
 
 

@@ -1,5 +1,9 @@
-#shelf-view .book {
-  top: 50vh;
-  left: 10vh; }
+#shelf-view {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat; }
+
+#shelf-view {
+  background-image: url("../images/clipboard.png"); }
 
 /*# sourceMappingURL=shelf.css.map */

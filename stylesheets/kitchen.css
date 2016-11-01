@@ -1,25 +1,46 @@
-.view > a {
-  position: absolute;
-  display: block;
-  width: 10vh;
-  height: 10vh;
-  border: 3px solid black; }
-  .view > a:hover {
-    background-color: rgba(34, 0, 78, 0.4); }
+#kitchen-view {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat; }
 
-#kitchen-view .ice-box {
-  top: 10vh;
-  left: 20vh; }
-#kitchen-view .stove {
-  top: 40vh; }
-#kitchen-view .cellar {
-  left: 50vh;
-  top: 60vh; }
-#kitchen-view .shelf {
-  left: 70vh;
-  top: 80vh; }
-#kitchen-view .rice {
-  left: 45vh;
-  top: 45vh; }
+#kitchen-view {
+  width: 75vw;
+  height: 60vw;
+  background-image: url("../images/kitchen.jpg"); }
+  #kitchen-view .ice-box {
+    top: 40%;
+    left: 0%;
+    height: 40%;
+    width: 18%; }
+  #kitchen-view .stove {
+    right: 40%;
+    top: 50%;
+    height: 25%;
+    width: 20%; }
+  #kitchen-view .cellar {
+    right: 15%;
+    top: 40%;
+    width: 10%;
+    height: 20%; }
+  #kitchen-view .shelf {
+    right: 0%;
+    top: 40%;
+    width: 10%;
+    height: 15%; }
+  #kitchen-view .rice {
+    right: 0%;
+    top: 70%;
+    width: 15%;
+    height: 15%; }
+  #kitchen-view .cutting-board {
+    right: 15%;
+    top: 63%;
+    height: 12%;
+    width: 20%; }
+
+@media screen and (min-aspect-ratio: 5 / 3) {
+  #kitchen-view {
+    width: 125vh;
+    height: 100vh; } }
 
 /*# sourceMappingURL=kitchen.css.map */
