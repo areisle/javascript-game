@@ -240,6 +240,7 @@ $(document).ready(function () {
             //end of game stuff
             var score = getFinalScore();
             var message = ["the game is over!", "score: " + score + "%"];
+            // insiprational messages
             if (score < 50) {
                 message.push("yout risotto is terrible! you're fired!");
                 if (score === 0) {
