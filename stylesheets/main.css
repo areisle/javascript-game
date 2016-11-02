@@ -1,9 +1,9 @@
-#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #cutting-board-view, #pot-view, .items .item button, .view .nav.back {
+#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #cutting-board-view, #pot-view, .view .nav.back, .items .item button {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat; }
 
-#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #cutting-board-view, #pot-view, .items .item button, .view .nav.back {
+#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #cutting-board-view, #pot-view, .view .nav.back, .items .item button {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat; }
@@ -47,7 +47,7 @@
   #kitchen-view {
     width: 125vh;
     height: 100vh; } }
-#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #cutting-board-view, #pot-view, .items .item button, .view .nav.back {
+#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #cutting-board-view, #pot-view, .view .nav.back, .items .item button {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat; }
@@ -117,7 +117,7 @@
   #stove-view {
     width: 127vh;
     height: 100vh; } }
-#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #cutting-board-view, #pot-view, .items .item button, .view .nav.back {
+#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #cutting-board-view, #pot-view, .view .nav.back, .items .item button {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat; }
@@ -125,7 +125,7 @@
 #shelf-view {
   background-image: url("../images/clipboard.png"); }
 
-#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #cutting-board-view, #pot-view, .items .item button, .view .nav.back {
+#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #cutting-board-view, #pot-view, .view .nav.back, .items .item button {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat; }
@@ -235,7 +235,7 @@
     opacity: 1;
     stroke: red;
     stroke-dashoffset: 0; } }
-#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #cutting-board-view, #pot-view, .items .item button, .view .nav.back {
+#kitchen-view, #cellar-view, #stove-view, #ice-box-view, #shelf-view, #cutting-board-view, #pot-view, .view .nav.back, .items .item button {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat; }
@@ -280,8 +280,6 @@ html, body, .wrapper {
 
 .wrapper {
   display: flex;
-  -webkit-perspective: 1200;
-  perspective: 1200;
   background-size: 20% auto; }
 
 #view-wrapper {
@@ -295,18 +293,22 @@ html, body, .wrapper {
   height: 75vw;
   margin: 0 auto;
   border: none; }
-
-.view > * {
-  position: absolute;
-  display: block;
-  width: 10vh;
-  height: 10vh;
-  border: none; }
+  .view > * {
+    position: absolute;
+    display: block;
+    width: 10vh;
+    height: 10vh;
+    border: none; }
+  .view .nav.back {
+    right: 0%;
+    top: 0%;
+    border: none;
+    background-image: url("../images/arrow.png"); }
 
 button {
   background-color: transparent;
-  border: none;
-  color: yellow; }
+  cursor: pointer;
+  border: none; }
   button:focus {
     outline: none; }
 
@@ -358,15 +360,6 @@ button {
       background-position: center center; }
     .items .item.parmesan {
       background-image: url("../images/parmesan.png"); }
-
-.view .nav.back {
-  right: 0%;
-  top: 0%;
-  border: none;
-  background-image: url("../images/arrow.png"); }
-
-button {
-  cursor: pointer; }
 
 .pop-up {
   position: fixed;

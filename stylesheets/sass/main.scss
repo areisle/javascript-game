@@ -5,7 +5,6 @@
 @import "shelf.scss";
 @import "cutting-board.scss";
 @import "pot.scss";
-$items-width: 20;
 $unit: vw;
 @font-face {
     font-family: castro;
@@ -25,10 +24,6 @@ html, body, .wrapper {
 }
 .wrapper {
 	display: flex;
-	-webkit-perspective:1200;
-	perspective:1200;
-    //background-image: url('../images/wallpaper.jpg');
-    //background-color: rgba(128,128,128,1);
     background-size: 20% auto;
 }
 #view-wrapper {
@@ -42,20 +37,26 @@ html, body, .wrapper {
     height:75+$unit;
     margin: 0 auto;
     @include testing;
-}
-.view > * {
-		position: absolute;
-		display: block;
-		width: 10vh;
-		height: 10vh;
-		@include testing;
+    > * {
+        position: absolute;
+        display: block;
+        width: 10vh;
+        height: 10vh;
+        @include testing;
+    }
+    .nav.back {
+        right: 0%;
+        top: 0%;
+        @include testing;
+        background-image: url('../images/arrow.png');
+        @extend %view-background;
+    }
 }
 
 button {
 	background-color: transparent;
-    //rgba(255,255,255,0.2);
+    cursor: pointer;
     border: none;
-	color: yellow;
     &:focus {
         outline: none;
     }
@@ -121,16 +122,7 @@ button {
 
 	}
 }
-.view .nav.back {
-    right: 0%;
-    top: 0%;
-    @include testing;
-    background-image: url('../images/arrow.png');
-    @extend %view-background;
-}
-button {
-    cursor: pointer;
-}
+
 .pop-up {
     position: fixed;
     display: flex;
@@ -169,14 +161,14 @@ button {
     }
 }
 .pop-up-overlay {
-        position: fixed;
-        background-color: rgba(64,64,64,0.2);
-        top: 0%;
-        left: 0%;
-        width: 100%;
-        height: 100%;
-        z-index: 100;
-    }
+    position: fixed;
+    background-color: rgba(64,64,64,0.2);
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+}
 @media screen and (min-aspect-ratio: 100/75) {
     $unit: vh;
 	.view {
