@@ -14,6 +14,7 @@ $(document).ready(function () {
         cookingStages = ['soffrito', 'tostatura', 'deglaze', 'cottura', 'mantecatura'],
         currentStage = "raw",
         startTime = "new",
+        cooking = false,
         animationEvent = whichAnimationEvent(),
         $body = $('body'),
         //have different links available based on state of game
@@ -103,7 +104,6 @@ $(document).ready(function () {
             $current_item.data(new Ingredient(name, state, cut, stage, time));
             //increment
             items_collected++;
-            console.log($items.find('.item:first-child').data());
         } else {
             //temporary alert -- beautify later
             alert("sorry your bag is full");
@@ -122,7 +122,6 @@ $(document).ready(function () {
     function removeItem(item) {
         //remove the item --done
         //remove ingredient to ingredients_collected
-        console.log("trashing ingredient");
         var name = $(item).parent('.item').data("name");
         collection_counts[name]--;
         $(item).parent('.item').remove();
@@ -140,7 +139,8 @@ $(document).ready(function () {
     }
 
     function makePopUp (innards, buttons) {
-        $items.sortable({containment: '.items'});
+        $items.sortable('option','containment','.items');
+        $('.pot.cooking').droppable("disable");
         $body.append('<div class="pop-up"></div>');
         $body.append('<div class="pop-up-overlay"></div>');
         $(".pop-up").append('<h2>' + innards.shift() +'</h2>');
@@ -156,13 +156,16 @@ $(document).ready(function () {
         $('.pop-up button').prop('onclick',null);
         $('.pop-up').remove();
         $('.pop-up-overlay').remove();
-        $items.sortable({containment: 'window'}); 
+        if (cooking) {
+            $items.sortable('option','containment','window');
+            $('.pot.cooking').droppable("enable");
+        } 
+        
     }
     $items.sortable({containment: '.items'});
     //add ingredients to bag when clicked on
     $('.wrapper').on('click', '.ingredient', function () {
         //append clicked ingredient to items list (opt: if list contains less than 12 items)
-        //console.log("ingredient " + $(this).attr("id") + " was clicked");
         appendItem(this);
     });
 
@@ -185,7 +188,6 @@ $(document).ready(function () {
         e.preventDefault();
         var href = $(this).attr('href');
         navigate(href);
-        console.log(href + " nav link was clicked");
     });
     function potView() {
         // first check they have at least one of every ingredient
@@ -194,15 +196,22 @@ $(document).ready(function () {
             //had all ingredients
             //make pop up ask if they're sure
             //try to turn off other navigation while pop-p is up (maybe overlay div that fade in and reset its pointer-events to true or whatever)
+            $items.sortable('option','containment','.items');
             makePopUp(['cooking is very time sensitive, are you sure you\'re ready to proceed?'],['yes','no']);
-            $body.one('click', '.pop-up button.yes', function() {
+            
+            $body.one('click', '.pop-up button.yes', function(e) {
+                e.stopPropagation();
                 removePopUp();
                 //switch view
-                $('#view-wrapper').load('views.html #pot-view', function() {makeDroppable('pot')});
+                $('#view-wrapper').load('views.html #pot-view', function() {});
                 //add next pop-up
+                $items.sortable('option','containment','.items');
+                $('.pot.cooking').droppable("disable");
                 makePopUp(['drag and drop ingredients to add them to the pot','timing and order matter!'],['ok']);
-                $body.one('click', '.pop-up button.ok', function() {
+                $body.one('click', '.pop-up button.ok', function(e) {
+                    e.stopPropagation();
                     removePopUp();
+                    makeDroppable('pot');
                     //add next pop-up ---first of the cooking stages
                     //pop-up soffrito
                     //use this to make sure all ingredients get added
@@ -217,14 +226,16 @@ $(document).ready(function () {
                     popUpLoop();
                 });
             });
-            $body.one('click', '.pop-up button.no', function() {
+            $body.one('click', '.pop-up button.no', function(e) {
+                e.stopPropagation();
                 removePopUp();
                 //do nothing
             });
         } else {
             //have pop up saying they still need more ingredients
             makePopUp(['sorry, you still need more ingredients before you begin cooking'],['ok']);
-            $body.one('click', '.pop-up button.ok', function() {
+            $body.one('click', '.pop-up button.ok', function(e) {
+                e.stopPropagation();
                 removePopUp();
                 //do nothing
             });
@@ -234,9 +245,9 @@ $(document).ready(function () {
 
     function popUpLoop () {
         //base case
+        cooking = true;
         console.log("pop-up-loop called");
         if (cookingStages.length === 0) {
-            console.log("ended");
             //end of game stuff
             var score = getFinalScore();
             var message = ["the game is over!", "score: " + score + "%"];
@@ -262,6 +273,7 @@ $(document).ready(function () {
             
             makePopUp(message,['ok']);
             $body.one('click', '.pop-up button.ok', function(e) {
+                e.stopPropagation();
                 removePopUp();
                 //go to end of game screen
             });
@@ -274,11 +286,11 @@ $(document).ready(function () {
             } else {
                 copy = 1;
             }
-            console.log(cookingStages[0]);
             currentStage = cookingStages[0];
             makePopUp([cookingStages.shift()],['start']);
             
             $body.one('click', '.pop-up button.start', function(e) {
+                e.stopPropagation();
                 removePopUp();
                //set up timer
                 var $pie = $('.pie-timer circle');
@@ -369,7 +381,6 @@ $(document).ready(function () {
 
     //occurs when item is dropped on cutting board
     function handleDropEvent(event, ui) {
-      console.log("item state: " + ui.draggable.data("state") + ", cut state: " + $(this).data("cut"));
         var cut = $(this).data("cut");
       ui.draggable.data("state", cut);
         ui.draggable.css('background-position', 33.3*cut + '%');
@@ -412,12 +423,10 @@ $(document).ready(function () {
     
     function updateScore(item, time) {
         //check stage
-        console.log(currentStage);
         switch(currentStage) {
             case 'soffrito':
                 if ($(item).data().name === 'onions') {
                     //onion added
-                    console.log('onion added');
                     if ($(item).data().state === 2){
                         //full points on cut
                         score.cutting += 1;
@@ -425,21 +434,18 @@ $(document).ready(function () {
                     
                 } else if ($(item).data().name === 'garlic') {
                     //garlic added
-                    console.log('garic added');
                     if ($(item).data().state === 3){
                         //full points on cut
                         score.cutting += 1;
                     }
                 } else if ($(item).data().name === 'mushrooms') {
                     //mushrooms added
-                    console.log('mushroom added');
                     if ($(item).data().state === 1){
                         //full points on cut
                         score.cutting += 1;
                     }
                 } else if ($(item).data().name === 'butter') {
                     //butter added
-                    console.log('butter added');
                 }
                 break;
             case 'tostatura':
@@ -471,7 +477,6 @@ $(document).ready(function () {
            
         }
         collection_counts[$(item).data().name]++;
-        console.log('cutting score: ' + score.cutting);
     }
     
     

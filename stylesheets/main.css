@@ -366,10 +366,10 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  top: 25%;
+  top: 15%;
   left: 12.5%;
   width: 50%;
-  height: 50%;
+  min-height: 50%;
   background-color: rgba(255, 255, 255, 0.6);
   border: none;
   z-index: 200;
@@ -385,7 +385,7 @@ button {
   .pop-up button {
     outline: none;
     margin: 0% 10%;
-    padding: 10%;
+    padding: 5%;
     font-family: lewis, serif;
     font-size: 3.5vw;
     background-color: rgba(64, 64, 64, 0.5);
@@ -396,10 +396,10 @@ button {
 
 .pop-up-overlay {
   position: fixed;
-  background-color: rgba(64, 64, 64, 0.2);
+  background-color: rgba(64, 64, 64, 0.5);
   top: 0%;
   left: 0%;
-  width: 100%;
+  width: 75%;
   height: 100%;
   z-index: 100; }
 
