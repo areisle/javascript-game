@@ -120,9 +120,12 @@ button {
 
 	}
 }
-.nav.back {
+.view .nav.back {
     right: 0%;
     top: 0%;
+    @include testing;
+    background-image: url('../images/arrow.png');
+    @extend %view-background;
 }
 button {
     cursor: pointer;

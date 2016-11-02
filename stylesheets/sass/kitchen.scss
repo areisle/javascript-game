@@ -2,13 +2,13 @@
 #kitchen-view {
   width:75vw;
   height:60vw;
-	background-image: url('../images/kitchen.jpg');
+	background-image: url('../images/kitchen.jpeg');
 	@extend %view-background;
 	.ice-box {
-		top: 40%;
+		top: 60%;
 		left: 0%;
 		height: 40%;
-		width: 18%;
+		width: 25%;
 	}
 	.stove {
 		right: 40%;
@@ -24,13 +24,13 @@
 	}
 	.shelf {
 		right: 0%;
-		top: 40%;
+		top: 50%;
 		width: 10%;
 		height:15%;
 	}
 	.rice {
 		right: 0%;
-		top: 70%;
+		top: 75%;
 		width: 15%;
 		height:15%;
 	}

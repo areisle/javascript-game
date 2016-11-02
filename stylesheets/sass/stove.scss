@@ -1,16 +1,18 @@
 
 #stove-view {
-	background-image: url('../images/temp-stove.jpg');
+	background-image: url('../images/stove.jpeg');
 	@extend %view-background;
+    width: 75vw;
+    height: 59vw;
 	.stock {
 		top: 50%;
-		left: 35%;
-		width: 15%;
+		left: 50%;
+		width: 10%;
 		height: 16%;
 	}
 	.pot {
-	    left: 20%;
-	    top: 56%;
+	    left: 37%;
+	    top: 54%;
 	    width: 12%;
 	    height: 12%;
 	}
@@ -32,4 +34,10 @@
 		height: 15%;
 	}
 	
+}
+@media screen and (min-aspect-ratio: 14/11) {
+	#stove-view {
+      width:127vh;
+      height:100vh;
+  }
 }

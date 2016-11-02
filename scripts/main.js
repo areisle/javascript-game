@@ -43,7 +43,7 @@ $(document).ready(function () {
         //add ingredient to ingredients_collected
         if (items_collected < 10) {
             // <div class="item ingredient"> ingredient <button class="trash">remove</button></div>
-            var $current_item = $('<div class="item ' + $(item).attr('id') + '">' + $(item).attr('id') + '<button class="trash"></button></div>'),
+            var $current_item = $('<div class="item ' + $(item).attr('id') + '"><button class="trash"></button></div>'),
                 name = $(item).attr('id'),
                 state = 0,
                 stage = "unknown",
@@ -187,7 +187,7 @@ $(document).ready(function () {
     function potView() {
         // first check they have at least one of every ingredient
         //temporary so I can skip collecting ingredients
-        if (collectionCheck()){
+        if (true || collectionCheck()){
             //had all ingredients
             //make pop up ask if they're sure
             //try to turn off other navigation while pop-p is up (maybe overlay div that fade in and reset its pointer-events to true or whatever)

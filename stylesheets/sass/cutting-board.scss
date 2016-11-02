@@ -1,29 +1,27 @@
 @import "functions.scss";
-$items-width: 20;
 #cutting-board-view {
+    background-image: url('../images/cutting-board.jpg');
+    @extend %view-background;
+    width: 75vw;
+    height: 50vw;
 	.cutting-board {
 		display: flex;
 		flex-wrap: wrap;
-		width: (100 - $items-width) + vw;
-		height: (100 - $items-width) + vw;
-		transform-origin: center bottom;
-		transform: rotateX(45deg);
+		width: 100%;
+		height: 100%;
 	}
 	.cutting-board div {
 		width: 50%;
 		height: 50%;
-		border: 3px solid black;
-		&:hover {
-		background-color: rgba(34,0,78, 0.4);
-		}
+		
 	}
 	.drop-hover {
 		background-color: rgba(34,0,78, 0.4);
 	}
-	@media screen and (min-aspect-ratio: 100/80) {
-		.cutting-board {
-			width: 100vh;
-			height: 100vh;
-		}
-	}
+}
+@media screen and (min-aspect-ratio: 100/67) {
+    #cutting-board-view {
+        width: 150vh;
+        height: 100vh;
+    }
 }

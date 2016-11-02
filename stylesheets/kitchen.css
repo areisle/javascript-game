@@ -6,12 +6,12 @@
 #kitchen-view {
   width: 75vw;
   height: 60vw;
-  background-image: url("../images/kitchen.jpg"); }
+  background-image: url("../images/kitchen.jpeg"); }
   #kitchen-view .ice-box {
-    top: 40%;
+    top: 60%;
     left: 0%;
     height: 40%;
-    width: 18%; }
+    width: 25%; }
   #kitchen-view .stove {
     right: 40%;
     top: 50%;
@@ -24,12 +24,12 @@
     height: 20%; }
   #kitchen-view .shelf {
     right: 0%;
-    top: 40%;
+    top: 50%;
     width: 10%;
     height: 15%; }
   #kitchen-view .rice {
     right: 0%;
-    top: 70%;
+    top: 75%;
     width: 15%;
     height: 15%; }
   #kitchen-view .cutting-board {

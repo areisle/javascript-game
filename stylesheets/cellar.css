@@ -24,10 +24,16 @@
     left: 65%;
     width: 15%;
     height: 10%; }
-  #cellar-view .kitchen {
+  #cellar-view .nav.kitchen {
     left: 40%;
     width: 20%;
     top: 25%;
     height: 50%; }
+  #cellar-view .nav.back {
+    left: 85%;
+    top: 0%;
+    width: 15%;
+    height: 15%;
+    border: none; }
 
 /*# sourceMappingURL=cellar.css.map */

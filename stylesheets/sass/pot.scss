@@ -38,14 +38,16 @@
     98% {opacity: 0.5}
     100% {opacity: 1; stroke: red; stroke-dashoffset: 0}
 }
-
+@import "functions.scss";
 #pot-view {
     //temporary for testing navigation
     background-image: url('../images/pot.png');
     @extend %view-background;
     .pot.cooking {
-        top: 20%;
-        left: 40%;
+        top: 15%;
+        left: 25%;
+        width: 50%;
+        height: 45%;
     }
     svg.pie-timer {
         position: absolute;
