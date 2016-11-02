@@ -187,7 +187,7 @@ $(document).ready(function () {
     function potView() {
         // first check they have at least one of every ingredient
         //temporary so I can skip collecting ingredients
-        if (true || collectionCheck()){
+        if (collectionCheck()){
             //had all ingredients
             //make pop up ask if they're sure
             //try to turn off other navigation while pop-p is up (maybe overlay div that fade in and reset its pointer-events to true or whatever)
@@ -237,9 +237,25 @@ $(document).ready(function () {
             //end of game stuff
             var score = getFinalScore();
             var message = ["the game is over!", "score: " + score + "%"];
-            if (score === 0) {
-                message.push("looks like you forgot to add something...");
+            if (score < 50) {
+                message.push("yout risotto is terrible! you're fired!");
+                if (score === 0) {
+                    message.push("looks like you forgot to add something...");
+                }
+            } else if (score < 60) {
+                message.push("your risotto is mediocre. I don't think this is the position for you.");
+            } else if (score < 75) {
+                message.push("your risotto is acceptable.");
+            } else if (score < 85 ) {
+                message.push("your risotto is pretty good!");
+            } else if (score < 90) {
+                message.push("your risotto is fabulous! well done!");
+            } else if (score < 95) {
+                message.push("your risotto is almost perfect!");
+            } else {
+                message.push("your risotto is legendary!");
             }
+            
             makePopUp(message,['ok']);
             $body.one('click', '.pop-up button.ok', function(e) {
                 removePopUp();
@@ -349,11 +365,8 @@ $(document).ready(function () {
 
     //occurs when item is dropped on cutting board
     function handleDropEvent(event, ui) {
-      //ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
       console.log("item state: " + ui.draggable.data("state") + ", cut state: " + $(this).data("cut"));
-      //console.log("ui: " + event.data("name"));
         var cut = $(this).data("cut");
-      //ui.draggable.append("<p>cut type: " + cut +"</p>");
       ui.draggable.data("state", cut);
         ui.draggable.css('background-position', 33.3*cut + '%');
     }
