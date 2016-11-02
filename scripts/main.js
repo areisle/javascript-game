@@ -140,6 +140,7 @@ $(document).ready(function () {
     }
 
     function makePopUp (innards, buttons) {
+        $items.sortable({containment: '.items'});
         $body.append('<div class="pop-up"></div>');
         $body.append('<div class="pop-up-overlay"></div>');
         $(".pop-up").append('<h2>' + innards.shift() +'</h2>');
@@ -152,8 +153,10 @@ $(document).ready(function () {
     }
 
     function removePopUp (){
+        $('.pop-up button').prop('onclick',null);
         $('.pop-up').remove();
-        $('.pop-up-overlay').remove(); 
+        $('.pop-up-overlay').remove();
+        $items.sortable({containment: 'window'}); 
     }
     $items.sortable({containment: '.items'});
     //add ingredients to bag when clicked on
@@ -192,13 +195,13 @@ $(document).ready(function () {
             //make pop up ask if they're sure
             //try to turn off other navigation while pop-p is up (maybe overlay div that fade in and reset its pointer-events to true or whatever)
             makePopUp(['cooking is very time sensitive, are you sure you\'re ready to proceed?'],['yes','no']);
-            $body.on('click', '.pop-up button.yes', function() {
+            $body.one('click', '.pop-up button.yes', function() {
                 removePopUp();
                 //switch view
                 $('#view-wrapper').load('views.html #pot-view', function() {makeDroppable('pot')});
                 //add next pop-up
-                makePopUp(['drag and drop ingredients to add them to the pot','timing and order matter!', 'add first ingredient to start timer'],['ok']);
-                $body.on('click', '.pop-up button.ok', function() {
+                makePopUp(['drag and drop ingredients to add them to the pot','timing and order matter!'],['ok']);
+                $body.one('click', '.pop-up button.ok', function() {
                     removePopUp();
                     //add next pop-up ---first of the cooking stages
                     //pop-up soffrito
@@ -214,14 +217,14 @@ $(document).ready(function () {
                     popUpLoop();
                 });
             });
-            $body.on('click', '.pop-up button.no', function() {
+            $body.one('click', '.pop-up button.no', function() {
                 removePopUp();
                 //do nothing
             });
         } else {
             //have pop up saying they still need more ingredients
             makePopUp(['sorry, you still need more ingredients before you begin cooking'],['ok']);
-            $body.on('click', '.pop-up button.ok', function() {
+            $body.one('click', '.pop-up button.ok', function() {
                 removePopUp();
                 //do nothing
             });

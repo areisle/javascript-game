@@ -11,7 +11,7 @@
 #kitchen-view {
   width: 75vw;
   height: 60vw;
-  background-image: url("../images/kitchen.jpeg"); }
+  background-image: url("../images/kitchen.jpg"); }
   #kitchen-view .ice-box {
     top: 60%;
     left: 0%;
@@ -86,7 +86,7 @@
     border: none; }
 
 #stove-view {
-  background-image: url("../images/stove.jpeg");
+  background-image: url("../images/stove.jpg");
   width: 75vw;
   height: 59vw; }
   #stove-view .stock {
@@ -286,7 +286,8 @@ html, body, .wrapper {
 
 #view-wrapper {
   width: 75vw;
-  height: 100vh; }
+  height: 100vh;
+  background-color: #5c5040; }
 
 .view {
   position: relative;
