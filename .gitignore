@@ -1,2 +1,7 @@
 .sass-cache/
 *.css.map
+*.css
+jquery*
+scripts/snap*
+
+!reset.css

@@ -18,7 +18,7 @@
   #cutting-board-view .drop-hover {
     background-color: rgba(34, 0, 78, 0.4); }
 
-@media screen and (min-aspect-ratio: 100 / 67) {
+@media screen and (min-aspect-ratio: 2 / 1) {
   #cutting-board-view {
     width: 150vh;
     height: 100vh; } }

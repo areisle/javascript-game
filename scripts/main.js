@@ -275,7 +275,8 @@ $(document).ready(function () {
             $body.one('click', '.pop-up button.ok', function(e) {
                 e.stopPropagation();
                 removePopUp();
-                //go to end of game screen
+                window.location.href = "./index.html";
+                //go to end of game screen (will add this later)
             });
             return;
         } else {
