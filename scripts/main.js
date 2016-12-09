@@ -321,6 +321,18 @@ $(document).ready(function () {
         if (view_name === "pot") {
             potView();
         } else {
+            if (view_name === "cutting-board") {
+                //google analytics
+                ga('send', {
+                  hitType: 'event',
+                  eventCategory: 'link',
+                  eventAction: 'click',
+                  eventLabel: 'cutting-board',
+                  hitCallback: function() {
+                    console.log("tracking sent");
+                  }
+                });
+            }
             $view.load('views.html ' + href + '-view', function() {makeDroppable(view_name)});
         }
     }
