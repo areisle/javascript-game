@@ -35,16 +35,26 @@ header {
     text-align: center;
     font-size: 2vw; }
   header a {
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+  header a, header input[type="submit"] {
     outline: none;
-    margin: 0% 10%;
-    padding: 10%;
+    margin: 3px 10%;
+    padding: 4%;
     font-family: lewis, serif;
     font-size: 3.5vw;
     background-color: rgba(64, 64, 64, 0.5);
     color: white;
-    transition: background-color 0.5s; }
-    header a:hover {
+    transition: background-color 0.5s;
+    border: none; }
+    header a:hover, header input[type="submit"]:hover {
       background-color: #9f1212; }
+  header input[type="submit"] {
+    min-width: 20vw; }
+  header input {
+    padding: 5px;
+    margin: 5px; }
 
 @media screen and (min-aspect-ratio: 100 / 75) {
   .view {

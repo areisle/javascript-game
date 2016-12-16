@@ -275,7 +275,7 @@ $(document).ready(function () {
             $body.one('click', '.pop-up button.ok', function(e) {
                 e.stopPropagation();
                 removePopUp();
-                window.location.href = "./index.html";
+                window.location.href = "./index.php?choose";
                 //go to end of game screen (will add this later)
             });
             return;

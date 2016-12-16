@@ -1,10 +1,10 @@
-@import "functions.scss";
-@import "kitchen.scss";
-@import "cellar.scss";
-@import "stove.scss";
-@import "shelf.scss";
-@import "cutting-board.scss";
-@import "pot.scss";
+@import "functions";
+@import "kitchen";
+@import "cellar";
+@import "stove";
+@import "shelf";
+@import "cutting-board";
+@import "pot";
 $unit: vw;
 @font-face {
     font-family: castro;

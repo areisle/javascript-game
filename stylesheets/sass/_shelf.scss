@@ -1,0 +1,7 @@
+@import "functions.scss";
+#shelf-view {
+	background-image: url('../images/clipboard.png');
+	@extend %view-background;
+}
+
+
