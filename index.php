@@ -15,7 +15,7 @@
 </head>
 <body>
     <?php
-    $loggedin = true;
+    $loggedin = false;
     //temporary username and password
     $username = "";
     $password = "";
@@ -34,7 +34,7 @@
         //remove session data
         session_unset();
         session_destroy();
-        $loggedin = false;
+        //$loggedin = true;
     } else if (isset($_SESSION["userdata"])) {
         //check if there's stored session userdata already
         $sessiondata = $_SESSION["userdata"];
@@ -71,7 +71,7 @@
     -- returns: none
     */
     function outputErrors($errors) {
-        echo "<ul>";
+        echo "<ul class=\"errors\">";
         $reqErrorCount = count($errors["required"]);
         $invalidErrorCount = count($errors["invalid"]);
         
@@ -194,21 +194,23 @@
                 <?php
                 }
                 ?>
-                <p class="no-styles small">or <a class="no-styles small" href="kitchen.html">play</a> without logging in <br> (warning: scores will not be saved)</p>
+
                 <input type="submit" value="play"/>
+                <p class="no-styles small">or <a class="no-styles small" href="kitchen.html">play without logging in</a><br> (warning: scores will not be saved)</p>
             </form>
         <?php  
         } else {
-            if ($loggedin && !isset($_GET["choose"])) {
+            if ($loggedin ) {
                 outputErrors($errors);
             ?>
             <a href="kitchen.html"><div>play again</div></a>
-            <a href="index.php?choose"><div>switch player</div></a>
+            <a href="index.php?choose"><div>switch player/ logout</div></a>
             <?php
             } else {
             ?>
             <a href="index.php?login&new"><div>new player</div></a>
             <a href="index.php?login"><div>returning player</div></a>
+            <p class="no-styles small">or <a class="no-styles small" href="kitchen.html">play without logging in</a><br> (warning: scores will not be saved)</p>
             <?php 
             }
         }
