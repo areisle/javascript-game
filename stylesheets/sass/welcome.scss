@@ -24,7 +24,7 @@ header {
     top: 15%;
     left: 25%;
     width: 50%;
-    height: 75%;
+    min-height: 75%;
     background-color: rgba(255,255,255,0.6);
     @include testing;
     z-index: 200;
@@ -47,9 +47,29 @@ header {
         align-items: center;
         justify-content: center;
     }
-    a, input[type="submit"] {
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        div {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin: 3px;
+            input {
+                flex-grow: 1;
+                max-width: 500px;
+            }
+            label {
+                width: 120px;
+                text-align: right;
+                margin-right: 10px;
+            }
+        }
+    }
+    a:not(.no-styles), input[type="submit"] {
         outline: none;
-        margin: 3px 10%;
+        margin: 5px 10%;
         padding: 4%;
         font-family: lewis, serif;
         font-size: 3.5vw;
@@ -61,10 +81,21 @@ header {
             background-color: rgba(159,18,18,1);
         }
     }
+    p.no-styles {
+        font-family: serif;
+        font-size: 0.9em;
+        a {
+            display: inline;
+            text-decoration: underline;
+        }
+    }
     input[type="submit"] {min-width: 20vw;}
     input {
         padding: 5px;
         margin: 5px;
+    }
+    input:not([type="submit"]) {
+        text-align: left;
     }
     
 }
