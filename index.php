@@ -20,26 +20,27 @@
     $username = "";
     $password = "";
     $confirmPassword = "";
-    $usernamecheck = "tempname";
-    $passwordcheck = "temp";
+    //$usernamecheck = "tempname";
+    //$passwordcheck = "temp";
     $errors = ["invalid"=>[],"required"=>[], "other"=>[]];
     $formValid = false;
-    $new = isset($_GET["new"]) || isset($_GET["choose"]);
-
+    $new = isset($_GET["new"]);
     session_start();
-    $secure_id = "#$*%& dfuhtt454".session_id().$_SERVER["HTTP_USER_AGENT"].$_SERVER["REMOTE_ADDR"]."1.0.0.9.1.2.001dffgdfje$#*jngJGDRG120003434";
+    $secure_id = "#$*%& dfuhtt454".session_id().$_SERVER["HTTP_USER_AGENT"]
+        .$_SERVER["REMOTE_ADDR"]."1.0.0.9.1.2.001dffgdfje$#*jngJGDRG120003434";
     $userdata = ["login_time"=>time(), "username"=>$username, "secure_id"=>$secure_id];
 
-    if (isset($_GET["choose"])) {
+    if (isset($_GET["choose"]) || (isset($_GET["login"]) && !isset($_POST["username"]))) {
         //remove session data
+        //echo "true";
         session_unset();
         session_destroy();
-        //$loggedin = true;
+        $loggedin = false;
     } else if (isset($_SESSION["userdata"])) {
         //check if there's stored session userdata already
         $sessiondata = $_SESSION["userdata"];
         
-        echo "<p>".$sessiondata["username"]."</p>";
+        //echo "<p>".$sessiondata["username"]."</p>";
         if ($sessiondata["secure_id"]==$userdata["secure_id"]) {
             //same person, so allow them to just play again without logging in if desired
             //reset login time? if using it for game duration
@@ -149,7 +150,7 @@
     ?>
 	<header>
 		<h1>Welcome 
-        <?php echo (!$new)?"back":""; ?>
+        <?php echo ($loggedin || (!isset($_GET["new"])&& isset($_GET["login"])))?"back":""; ?>
         to Fire the Chef!</h1>
         <p>you've just been hired as an Entremetier</p>
         <p> objective: prepare mushroom risotto</p>
@@ -200,7 +201,7 @@
             </form>
         <?php  
         } else {
-            if ($loggedin ) {
+            if ($loggedin) {
                 outputErrors($errors);
             ?>
             <a href="kitchen.html"><div>play again</div></a>
