@@ -3,7 +3,7 @@
 	background-image: url('../images/stove.jpg');
 	@extend %view-background;
     width: 75vw;
-    height: 59vw;
+    height: 60.45vw;
 	.stock {
 		top: 50%;
 		left: 50%;
@@ -35,7 +35,7 @@
 	}
 	
 }
-@media screen and (min-aspect-ratio: 14/11) {
+@media screen and (min-aspect-ratio: 100/59) {
 	#stove-view {
       width:127vh;
       height:100vh;

@@ -1,4 +1,5 @@
 /*global $, console, alert*/
+/*jslint plusplus: true */
 $(document).ready(function () {
     // list of items
     "use strict";
@@ -20,7 +21,7 @@ $(document).ready(function () {
         //have different links available based on state of game
         game_state = {"locked": false, "cooking": false},
         $items = $('.items'),
-        score = {'cutting':0,'timing':0};
+        score = {'cutting': 0, 'timing': 0};
     
     function Ingredient(name, state, cut, stage, time) {
         //ex. name = "onion"
@@ -36,7 +37,7 @@ $(document).ready(function () {
         // have 1 be largest and 4 smallest
         this.state = state;
         // time at which ingredient should be added
-        this.time = time
+        this.time = time;
     }
 
     function appendItem(item) {
@@ -110,15 +111,19 @@ $(document).ready(function () {
         }
         //for debugging
     }
+    
     function getFinalScore() {
-        for (var item in collection_counts){
-            if (collection_counts[item] < 1){
+        var item,
+            finalScore;
+        for (item in collection_counts) {
+            if (collection_counts[item] < 1) {
                 return 0;
             }
         }
-        var finalScore = Math.round(10*(score.cutting + score.timing)/12*100)/10;
+        finalScore = Math.round(10 * (score.cutting + score.timing) / 12 * 100) / 10;
         return finalScore;
     }
+    
     function removeItem(item) {
         //remove the item --done
         //remove ingredient to ingredients_collected
@@ -130,7 +135,8 @@ $(document).ready(function () {
     }
 
     function collectionCheck() {
-        for (var item in collection_counts ) {
+        var item;
+        for (item in collection_counts ) {
             if (collection_counts[item] < 1) {
                 return false;
             }
@@ -138,30 +144,33 @@ $(document).ready(function () {
         return true;
     }
 
-    function makePopUp (innards, buttons) {
-        $items.sortable('option','containment','.items');
+    function makePopUp(innards, buttons) {
+        var innard, button;
+        $items.sortable('option', 'containment', '.items');
         $('.pot.cooking').droppable("disable");
         $body.append('<div class="pop-up"></div>');
         $body.append('<div class="pop-up-overlay"></div>');
-        $(".pop-up").append('<h2>' + innards.shift() +'</h2>');
-        for (var innard in innards){
-            $(".pop-up").append('<p>' + innards[innard]+'</p>');
+        $(".pop-up").append('<h2>' + innards.shift() + '</h2>');
+        for (innard in innards) {
+            $(".pop-up").append('<p>' + innards[innard] + '</p>');
         }
-        for (var button in buttons) {
-            $(".pop-up").append('<button class="'+ buttons[button]+'">' + buttons[button] + '</button>');
+        for (button in buttons) {
+            $(".pop-up").append('<button class="' + buttons[button] + '">' + buttons[button] + '</button>');
         }
     }
 
-    function removePopUp (){
-        $('.pop-up button').prop('onclick',null);
+    function removePopUp() {
+        //this isn't working as expected currently
+        $('.pop-up button').prop('onclick', null).off('click');
         $('.pop-up').remove();
         $('.pop-up-overlay').remove();
         if (cooking) {
-            $items.sortable('option','containment','window');
+            $items.sortable('option', 'containment', 'window');
             $('.pot.cooking').droppable("enable");
-        } 
+        }
         
     }
+    
     $items.sortable({containment: '.items'});
     //add ingredients to bag when clicked on
     $('.wrapper').on('click', '.ingredient', function () {
@@ -184,32 +193,35 @@ $(document).ready(function () {
     //swap view div depending on href of clicked link
     //1. get href/ prevent default
     //2. get view div 
-    $('.wrapper').on('click', '.nav', function (e){
+    $('.wrapper').on('click', '.nav', function (e) {
         e.preventDefault();
         var href = $(this).attr('href');
         navigate(href);
     });
+    
     function potView() {
         // first check they have at least one of every ingredient
         //temporary so I can skip collecting ingredients
-        if (collectionCheck()){
+        if (collectionCheck()) {
             //had all ingredients
             //make pop up ask if they're sure
             //try to turn off other navigation while pop-p is up (maybe overlay div that fade in and reset its pointer-events to true or whatever)
-            $items.sortable('option','containment','.items');
-            makePopUp(['cooking is very time sensitive, are you sure you\'re ready to proceed?'],['yes','no']);
+            $items.sortable('option', 'containment', '.items');
+            makePopUp(['cooking is very time sensitive, are you sure you\'re ready to proceed?'], ['yes', 'no']);
             
-            $body.one('click', '.pop-up button.yes', function(e) {
+            $body.one('click', '.pop-up button.yes', function (e) {
                 e.stopPropagation();
+                console.log("yes being clicked");
                 removePopUp();
                 //switch view
-                $('#view-wrapper').load('views.html #pot-view', function() {});
+                $('#view-wrapper').load('views.html #pot-view', function () {});
                 //add next pop-up
-                $items.sortable('option','containment','.items');
+                $items.sortable('option', 'containment', '.items');
                 $('.pot.cooking').droppable("disable");
-                makePopUp(['drag and drop ingredients to add them to the pot','timing and order matter!'],['ok']);
-                $body.one('click', '.pop-up button.ok', function(e) {
+                makePopUp(['drag and drop ingredients to add them to the pot', 'timing and order matter!'], ['ok']);
+                $body.one('click', '.pop-up button.ok', function (e) {
                     e.stopPropagation();
+                    console.log("ok being clicked");
                     removePopUp();
                     makeDroppable('pot');
                     //add next pop-up ---first of the cooking stages
@@ -222,19 +234,19 @@ $(document).ready(function () {
                              "rice": 0,
                              "parmesan": 0,
                              "butter": 0,
-                             "stock": 0}
+                             "stock": 0};
                     popUpLoop();
                 });
             });
-            $body.one('click', '.pop-up button.no', function(e) {
+            $body.one('click', '.pop-up button.no', function (e) {
                 e.stopPropagation();
                 removePopUp();
                 //do nothing
             });
         } else {
             //have pop up saying they still need more ingredients
-            makePopUp(['sorry, you still need more ingredients before you begin cooking'],['ok']);
-            $body.one('click', '.pop-up button.ok', function(e) {
+            makePopUp(['sorry, you still need more ingredients before you begin cooking'], ['ok']);
+            $body.one('click', '.pop-up button.ok', function (e) {
                 e.stopPropagation();
                 removePopUp();
                 //do nothing
@@ -243,14 +255,15 @@ $(document).ready(function () {
         
     }
 
-    function popUpLoop () {
+    function popUpLoop() {
         //base case
         cooking = true;
         console.log("pop-up-loop called");
         if (cookingStages.length === 0) {
             //end of game stuff
-            var score = getFinalScore();
-            var message = ["the game is over!", "score: " + score + "%"];
+            var score = getFinalScore(),
+                message = ["the game is over!", "score: " + score + "%"],
+                copy;
             // insiprational messages
             if (score < 50) {
                 message.push("yout risotto is terrible! you're fired!");
@@ -261,7 +274,7 @@ $(document).ready(function () {
                 message.push("your risotto is mediocre. I don't think this is the position for you.");
             } else if (score < 75) {
                 message.push("your risotto is acceptable.");
-            } else if (score < 85 ) {
+            } else if (score < 85) {
                 message.push("your risotto is pretty good!");
             } else if (score < 90) {
                 message.push("your risotto is fabulous! well done!");
@@ -271,8 +284,8 @@ $(document).ready(function () {
                 message.push("your risotto is legendary!");
             }
             
-            makePopUp(message,['ok']);
-            $body.one('click', '.pop-up button.ok', function(e) {
+            makePopUp(message, ['ok']);
+            $body.one('click', '.pop-up button.ok', function (e) {
                 e.stopPropagation();
                 removePopUp();
                 window.location.href = "./index.php?choose";
@@ -280,7 +293,6 @@ $(document).ready(function () {
             });
             return;
         } else {
-            var copy;
             //toggle for animation to make it restart
             if (((cookingStages.length) % 2) === 0) {
                 copy = 0;
@@ -288,36 +300,35 @@ $(document).ready(function () {
                 copy = 1;
             }
             currentStage = cookingStages[0];
-            makePopUp([cookingStages.shift()],['start']);
+            makePopUp([cookingStages.shift()], ['start']);
             
-            $body.one('click', '.pop-up button.start', function(e) {
+            $body.one('click', '.pop-up button.start', function (e) {
                 e.stopPropagation();
                 removePopUp();
                //set up timer
                 var $pie = $('.pie-timer circle');
                 startTime = new Date().getTime();
-                $pie.css({'animation-play-state':'running'});
+                $pie.css({'animation-play-state': 'running'});
                 //trigger next pop-up on timer end
-                $body.one(animationEvent, '.pie-timer circle', function(){
+                $body.one(animationEvent, '.pie-timer circle', function () {
                     //reset animation -- trigger reflow by changing animation name
-                    $pie.css('animation-play-state','paused');
-                    if (copy===1) {
-                       $pie.css('animation', 'flash-and-fill-copy 5s linear'); 
-                   } else {
+                    $pie.css('animation-play-state', 'paused');
+                    if (copy === 1) {
+                        $pie.css('animation', 'flash-and-fill-copy 5s linear');
+                    } else {
                         $pie.css('animation', 'flash-and-fill 5s linear');
-                   }
-                    $pie.css('animation-play-state','paused');
+                    }
+                    $pie.css('animation-play-state', 'paused');
                     console.log("animation end");
                     popUpLoop();
-                }); 
+                });
             });
         }
     }
 
     function navigate(href) {
-        "use strict";
-        var $view = $('#view-wrapper');
-        var view_name = href.substring(1);
+        var $view = $('#view-wrapper'),
+            view_name = href.substring(1);
         if (view_name === "pot") {
             potView();
         } else {
@@ -334,7 +345,9 @@ $(document).ready(function () {
                 //   }
                 // });
             }
-            $view.load('views.html ' + href + '-view', function() {makeDroppable(view_name)});
+            $view.load('views.html ' + href + '-view', function () {
+                makeDroppable(view_name);
+            });
         }
     }
 
@@ -344,9 +357,9 @@ $(document).ready(function () {
 
       -------------------------*/
     function makeDroppable(view_name) {
-        $items.sortable('option','containment','.items');
+        $items.sortable('option', 'containment', '.items');
         if (view_name === 'cutting-board') {
-            $items.sortable('option','containment','window');
+            $items.sortable('option', 'containment', 'window');
             $('.cut.julienne')
                 .data({"cut": 1})
                 .droppable({
@@ -354,7 +367,7 @@ $(document).ready(function () {
                     drop: handleDropEvent,
                     hoverClass: 'drop-hover',
                     tolerance: 'pointer'
-              });
+                });
             $('.cut.brunoisette')
                 .data({"cut": 3})
                 .droppable({
@@ -362,7 +375,7 @@ $(document).ready(function () {
                     drop: handleDropEvent,
                     hoverClass: 'drop-hover',
                     tolerance: 'pointer'
-              });
+                });
             $('.cut.brunoise')
                 .data({"cut": 2})
                 .droppable({
@@ -370,18 +383,18 @@ $(document).ready(function () {
                     drop: handleDropEvent,
                     hoverClass: 'drop-hover',
                     tolerance: 'pointer'
-              });
-                $('.cut.grate')
+                });
+            $('.cut.grate')
                 .data({"cut": 3})
                 .droppable({
                     accept: '.parmesan',
                     drop: handleDropEvent,
                     hoverClass: 'drop-hover',
                     tolerance: 'pointer'
-              });
+                });
 
-        } else if (view_name==="pot") {
-            $items.sortable('option','containment','window');
+        } else if (view_name === "pot") {
+            $items.sortable('option', 'containment', 'window');
             //add pot to drop ingredients into
             //conditions for starting cooking --clicked okay, have all ingredients
             $('.pot.cooking').droppable({
@@ -389,27 +402,27 @@ $(document).ready(function () {
                 drop: handleCookingDropEvent,
                 hoverClass: 'drop-hover',
                 tolerance: 'pointer'
-              });
+            });
         }
     }
 
     //occurs when item is dropped on cutting board
     function handleDropEvent(event, ui) {
         var cut = $(this).data("cut");
-      ui.draggable.data("state", cut);
-        ui.draggable.css('background-position', 33.3*cut + '%');
+        ui.draggable.data("state", cut);
+        ui.draggable.css('background-position', 33.3 * cut + '%');
     }
 
     function handleCookingDropEvent(event, ui) {
         //once item is added, remove istead of revert
         //have counter checking num added so far
-        var timeDropped = new Date().getTime() -startTime;
-        updateScore(ui.draggable,timeDropped);
+        var timeDropped = new Date().getTime() - startTime;
+        updateScore(ui.draggable, timeDropped);
         ui.draggable.remove();
     }
 
     function checkCut(e) {
-        if (e.data("cut") === true && e.data("state") < $(this).data("cut") ) {
+        if (e.data("cut") === true && e.data("state") < $(this).data("cut")) {
             return true;
         } else {
             return false;
@@ -418,18 +431,18 @@ $(document).ready(function () {
 
     //this part is from https://davidwalsh.name/css-animation-callback
     /* From Modernizr */
-    function whichAnimationEvent(){
-        var t;
-        var el = document.createElement('fakeelement');
-        var animations = {
-          'animation':'animationend',
-          'OAnimation':'oAnimationEnd',
-          'MozAnimation':'animationend',
-          'WebkitAnimation':'webkitAnimationEnd'
-        }
+    function whichAnimationEvent() {
+        var t,
+            el = document.createElement('fakeelement'),
+            animations = {
+                'animation': 'animationend',
+                'OAnimation': 'oAnimationEnd',
+                'MozAnimation': 'animationend',
+                'WebkitAnimation': 'webkitAnimationEnd'
+            };
 
-        for(t in animations){
-            if( el.style[t] !== undefined ){
+        for (t in animations) {
+            if (el.style[t] !== undefined) {
                 return animations[t];
             }
         }
@@ -437,62 +450,59 @@ $(document).ready(function () {
     
     function updateScore(item, time) {
         //check stage
-        switch(currentStage) {
-            case 'soffrito':
-                if ($(item).data().name === 'onions') {
-                    //onion added
-                    if ($(item).data().state === 2){
-                        //full points on cut
-                        score.cutting += 1;
-                    }
-                    
-                } else if ($(item).data().name === 'garlic') {
-                    //garlic added
-                    if ($(item).data().state === 3){
-                        //full points on cut
-                        score.cutting += 1;
-                    }
-                } else if ($(item).data().name === 'mushrooms') {
-                    //mushrooms added
-                    if ($(item).data().state === 1){
-                        //full points on cut
-                        score.cutting += 1;
-                    }
-                } else if ($(item).data().name === 'butter') {
-                    //butter added
+        switch (currentStage) {
+        case 'soffrito':
+            if ($(item).data().name === 'onions') {
+                //onion added
+                if ($(item).data().state === 2) {
+                    //full points on cut
+                    score.cutting += 1;
                 }
-                break;
-            case 'tostatura':
-                if ($(item).data().name === 'rice') {
-                    //rice added
+
+            } else if ($(item).data().name === 'garlic') {
+                //garlic added
+                if ($(item).data().state === 3) {
+                    //full points on cut
+                    score.cutting += 1;
                 }
-                break;
-            case 'deglaze':
-                if ($(item).data().name === 'wine') {
-                    //wine added
+            } else if ($(item).data().name === 'mushrooms') {
+                //mushrooms added
+                if ($(item).data().state === 1) {
+                    //full points on cut
+                    score.cutting += 1;
                 }
-                break;
-            case 'cottura':
-                if ($(item).data().name === 'stock') {
-                    //stock added
+            } else if ($(item).data().name === 'butter') {
+                //butter added
+            }
+            break;
+        case 'tostatura':
+            if ($(item).data().name === 'rice') {
+                //rice added
+            }
+            break;
+        case 'deglaze':
+            if ($(item).data().name === 'wine') {
+                //wine added
+            }
+            break;
+        case 'cottura':
+            if ($(item).data().name === 'stock') {
+                //stock added
+            }
+            break;
+        case 'mantecatura':
+            if ($(item).data().name === 'parmesan') {
+                //parmesan added
+                if ($(item).data('state') === 3) {
+                    //parm was grated
                 }
-                break;
-            case 'mantecatura':
-                if ($(item).data().name === 'parmesan') {
-                    //parmesan added
-                    if ($(item).data('state') === 3) {
-                        //parm was grated
-                    }
-                }
-                break;
+            }
+            break;
         }
         if (currentStage === $(item).data().stage) {
-            score.cutting += (1 - Math.abs($(item).data().time - time)/15000);
+            score.cutting += (1 - Math.abs($(item).data().time - time) / 15000);
            
         }
         collection_counts[$(item).data().name]++;
     }
-    
-    
 });
-
