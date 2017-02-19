@@ -3,5 +3,5 @@
 *.css
 jquery*
 scripts/snap*
-
+.DS_Store
 !reset.css
