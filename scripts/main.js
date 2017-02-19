@@ -161,7 +161,7 @@ $(document).ready(function () {
 
     function removePopUp() {
         //this isn't working as expected currently
-        $('.pop-up button').prop('onclick', null).off('click');
+        $('.pop-up button').off('click');
         $('.pop-up').remove();
         $('.pop-up-overlay').remove();
         if (cooking) {
