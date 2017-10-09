@@ -8,14 +8,7 @@ import './stylesheets/main.css';
 //import Home from './my_modules/home.js';
 //import Details from './my_modules/details.js';
 //import RSVPApp from './my_modules/rsvp.js';
-function setCatalogDirection() {
-  //do this only on mount, and resize
-  //get current size of window
-  //compare to size of current view
-  let [wWidth, wHeight] = [window.innerWidth, window.innerHeight];
-  let wAR = wWidth / wHeight;
-  let vAR = 1001 / 768;
-}
+
 class App extends Component {
   constructor(props) {
     //call methods that set position of catalog here -- and on resize?
@@ -32,19 +25,23 @@ class App extends Component {
       currentView: 'kitchen',
       items: [],
       layout: 'vertical',
+      availableSpace: {AR: (window.innerWidth*0.75 / window.innerHeight), height: 100, width: 75}
     };
     this.swapView = this.swapView.bind(this);
     this.addItem = this.addItem.bind(this);
     this.removeItem = this.removeItem.bind(this);
+    
   }
-  
+  componentDidMount() {
+    this.updateLayout();
+    window.addEventListener("resize", this.updateLayout.bind(this));
+  }
   //change view location
   swapView(view) {
     this.setState({
       currentView: view,
     });
   }
-  
   
   //additem to catalog
   addItem(item) {
@@ -71,20 +68,35 @@ class App extends Component {
   
   //changes layout of game depending on window size
   updateLayout() {
-    
+    let [wWidth, wHeight] = [window.innerWidth, window.innerHeight];
+    let availableSpace = {vertical: {AR: (wWidth*0.75 / wHeight), height: 100, width: 75}, 
+                          horizontal: {AR: (wWidth / (0.8*wHeight)), height: 80, width: 100}};
+    let iAR = this.views[this.state.currentView].aspectRatio;
+    let v = Math.abs(availableSpace.vertical.AR - iAR);
+    let h = Math.abs(availableSpace.horizontal.AR - iAR);
+    let result = (v > h) ? 'horizontal': 'vertical';
+    this.setState({
+      layout: result,
+      availableSpace: availableSpace[result],
+    });
   }
   
   render () {
     let view = this.views[this.state.currentView];
+    let nonconWidth = `${ this.state.availableSpace.height * view.aspectRatio }vh`;
+    
+    let nonconHeight = `${this.state.availableSpace.width / view.aspectRatio }vw`;
+    let dims = (view.aspectRatio > this.state.availableSpace.AR) ? {width: '100%', height: nonconHeight}: {width: nonconWidth, height: '100%'}
     return (
-      <div className="wrapper">
+      <div className={`wrapper ${this.state.layout}`}>
        <div className="view-wrapper">
           <View name={this.state.currentView} 
                 connections={view.connections}
                 items={view.items}
                 tools={view.tools}
                 move={this.swapView}
-                add={this.addItem}>
+                add={this.addItem}
+                dimensions={dims}>
           </View>
         </div>
         <Catalog  items={this.state.items} 
@@ -116,7 +128,7 @@ class View extends Component {
               </button>);
     });
     return (
-      <div className="view" id={`${this.props.name}-view`}>
+      <div className="view" id={`${this.props.name}-view`} style={this.props.dimensions}>
         {connections}
         {items}
       </div>
@@ -130,9 +142,7 @@ class Catalog extends Component {
       return <Item key={index} name={item.name} remove={() => this.props.removeItem(index)}></Item>;
     });
     return (
-      <div className="items">
-        <ul className="items">{listItems}</ul>
-      </div>
+      <ul className="items">{listItems}</ul>
     );
   }
 }

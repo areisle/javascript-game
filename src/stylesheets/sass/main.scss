@@ -22,21 +22,31 @@ html, body, .wrapper {
 	width: 100%;
 	height: 100%;
 }
-.wrapper {
-	display: flex;
-    background-size: 20% auto;
-}
-.view-wrapper {
+
+.vertical.wrapper {
+  display: flex;
+  .view-wrapper {
 	width: 75vw;
 	height: 100vh;
-    background-color: rgb(92,80,64);
+  }
+}
+.horizontal.wrapper {
+  .view-wrapper {
+	width: 100vw;
+	height: 80vh;
+  }
+}
+.view-wrapper {
+  display:flex;
+  justify-content: center;
+  align-items: center;
 }
 .view {
     position: relative;
-    width:75+$unit;
-    height:75+$unit;
     margin: 0 auto;
     @include testing;
+    width: 100%;
+    height: 100%;
     > * {
         position: absolute;
         display: block;
@@ -61,14 +71,30 @@ button {
         outline: none;
     }
 }
-.items {
-    background-image: url('../images/butcherblock.jpg');
+.horizontal .items {
+    background-size: auto 100%;
+	width: 100vw;
+	height: 20vh;
+	@include testing;
+    overflow-x: auto;
+    display: flex;
+    justify-content: flex-start;
+  .item {
+    flex-shrink: 0;
+  }
+}
+.vertical .items {
     background-size: 100% auto;
-    background-repeat: repeat;
 	width: 25vw;
 	height: 100vh;
 	@include testing;
     overflow-y: scroll;
+}
+
+.items {
+    background-image: url('../images/butcherblock.jpg');
+    background-repeat: repeat;
+	@include testing;
 	.item {
         position: relative;
 		@include testing;
@@ -168,11 +194,4 @@ button {
     width: 75%;
     height: 100%;
     z-index: 100;
-}
-@media screen and (min-aspect-ratio: 100/75) {
-    $unit: vh;
-	.view {
-        width:100+$unit;
-        height:100+$unit;
-    }
 }
