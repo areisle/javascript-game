@@ -5,3 +5,11 @@ jquery*
 scripts/snap*
 
 !reset.css
+fonts/*
+images/*
+reference/*
+scripts/*
+src/fonts/*
+src/images/*
+*.php
+node_modules/*
